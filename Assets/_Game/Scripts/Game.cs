@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using DesignPatterns.Singleton;
 
+
 public class Game : Singleton<Game>
 {
     public CombatEvents Events => _combat.Events;
+    [SerializeField] UIView _uiView;
 
     Combat _combat;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        _combat = new Combat();
+        _uiView.Init(_combat);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         

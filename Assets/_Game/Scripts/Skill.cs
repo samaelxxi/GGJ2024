@@ -19,4 +19,10 @@ public class Skill : ScriptableObject
     
     [field: SerializeField]
     public bool IsAOE { get; private set; }
+
+
+    [field: SerializeField]
+    public bool IsAddsEffect { get; private set; }
+    [field: SerializeField, ShowIf("IsAddsEffect")]
+    public Effect Effect { get; private set; }
 }
