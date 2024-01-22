@@ -124,6 +124,6 @@ public class Combat
             return false;
         if (skill.IsAOE && target != null)
             return false;
-        return true;
+        return true; 
     }
 }
