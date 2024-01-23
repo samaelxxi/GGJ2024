@@ -35,6 +35,11 @@ public class CombatEvents : MonoBehaviour
         
     }
 
+    public void OnCharacterEffectEnd(Character character, Effect effect)
+    {
+        
+    }
+
     public void OnCharacterGetsTurn(Character character)
     {
         

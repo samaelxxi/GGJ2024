@@ -9,6 +9,9 @@ public class CharacterData : ScriptableObject
     [field: SerializeField]
     public int TotalHealth { get; private set; }
 
+    [field: SerializeField]
+    public int Initiative { get; private set; }
+
 
     [field: SerializeField]
     public List<Skill> Skills { get; private set; }
