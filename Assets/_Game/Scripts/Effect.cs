@@ -10,9 +10,14 @@ public enum EffectType
 
 public class Effect
 {
-
-
     public int Duration;
     public EffectType Type;
     public int Amount;
+
+    public Effect(EffectType type, int amount, int duration)
+    {
+        Type = type;
+        Amount = amount;
+        Duration = duration;
+    }
 }

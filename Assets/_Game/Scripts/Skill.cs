@@ -24,7 +24,7 @@ public class Skill : ScriptableObject
     [field: SerializeField]
     public bool IsAddsEffect { get; private set; }
     [field: SerializeField, ShowIf("IsAddsEffect")]
-    public Effect Effect { get; private set; }
+    public EffectType Effect { get; private set; }
     [field: SerializeField, ShowIf("IsAddsEffect")]
     public int EffectValue { get; private set; }
     [field: SerializeField, ShowIf("IsAddsEffect")]

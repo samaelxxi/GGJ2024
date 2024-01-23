@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Combat1_Support
   m_EditorClassIdentifier: 
   <TotalHealth>k__BackingField: 0
+  <Initiative>k__BackingField: 0
   <Skills>k__BackingField: []
