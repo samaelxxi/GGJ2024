@@ -52,7 +52,7 @@ public class Combat
     void StartNewTurn()
     {
         _turnOrder[0].OnTurnStart();
-        Events.OnCharacterGetsTurn(_turnOrder[0]);
+        Events.CharacterGetsTurn(_turnOrder[0]);
     }
 
     void EndTurn()
@@ -79,13 +79,13 @@ public class Combat
                 {
                     if (GetCharacterTeam(character) == GetCharacterTeam(user))
                         continue;
-                    Events.OnCharacterAttacks(user, character);
+                    Events.CharacterAttacks(user, character);
                     character.GetDamage(skill.Damage);
                 }
             }
             else
             {
-                Events.OnCharacterAttacks(user, target);
+                Events.CharacterAttacks(user, target);
                 target.GetDamage(skill.Damage);
             }
         }
@@ -97,13 +97,13 @@ public class Combat
                 {
                     if (GetCharacterTeam(character) != GetCharacterTeam(user))
                         continue;
-                    Events.OnCharacterHeals(user, character);
+                    Events.CharacterHeals(user, character);
                     character.GetHeal(skill.HealAmount);
                 }
             }
             else
             {
-                Events.OnCharacterHeals(user, target);
+                Events.CharacterHeals(user, target);
                 target.GetHeal(skill.HealAmount);
             }
         }
