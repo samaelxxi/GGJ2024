@@ -7,6 +7,7 @@ using DesignPatterns.Singleton;
 public class Game : Singleton<Game>
 {
     public CombatEvents Events => _combat.Events;
+    public UIView UIView=> _uiView;
     [SerializeField] UIView _uiView;
 
     Combat _combat;
