@@ -31,14 +31,15 @@ public class Character
             if (def.Amount >= damage)
             {
                 def.Amount -= damage;
-                Game.Instance.Events.OnCharacterDamaged(this, 0);  // TODO ???
+                Game.Instance.Events.CharacterDamaged(this, damage);
+                // Game.Instance.Events.OnCharacterDamaged(this, damage);
                 return;
             }
             else
             {
                 damage -= def.Amount;
                 _effects.Remove(def);
-                Game.Instance.Events.OnCharacterEffectEnd(this, def);
+                Game.Instance.Events.CharacterEffectEnd(this, def);
             }
         }
 
@@ -48,11 +49,11 @@ public class Character
         {
             _health = 0;
             _isDead = true;
-            Game.Instance.Events.OnCharacterDied(this);
+            Game.Instance.Events.CharacterDied(this);
         }
         else
         {
-            Game.Instance.Events.OnCharacterDamaged(this, damage);
+            Game.Instance.Events.CharacterDamaged(this, damage);
         }
     }
 
@@ -64,13 +65,13 @@ public class Character
         {
             _health = _data.TotalHealth;
         }
-        Game.Instance.Events.OnCharacterHealed(this, _health - oldHp);
+        Game.Instance.Events.CharacterHealed(this, _health - oldHp);
     }
 
     public void AddEffect(Effect effect)
     {
         _effects.Add(effect);
-        Game.Instance.Events.OnCharactersGetsEffect(this, effect);
+        Game.Instance.Events.CharactersGetsEffect(this, effect);
     }
 
     public void OnTurnStart()
@@ -81,7 +82,7 @@ public class Character
             if (effect.Duration <= 0)
             {
                 _effects.Remove(effect);
-                Game.Instance.Events.OnCharacterEffectEnd(this, effect);
+                Game.Instance.Events.CharacterEffectEnd(this, effect);
             }
         }
     }
