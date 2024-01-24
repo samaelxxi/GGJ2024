@@ -6,8 +6,8 @@ using System.Linq;
 
 public class Combat
 {
-    Character[] _team1;
-    Character[] _team2;
+    public Character[] _team1;
+    public Character[] _team2;
 
     List<Character> _turnOrder = new();
 
