@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55bfe0ca8bf4aae44b83f817e60cf2cc, type: 3}
+  m_Name: CombatData_UI_TEST
+  m_EditorClassIdentifier: 
+  <Team1>k__BackingField:
+  - {fileID: 11400000, guid: 38c7068af1b52974db236f17a0a6d110, type: 2}
+  - {fileID: 11400000, guid: 8c33e3c1d784c034189a4438f8a3a3d5, type: 2}
+  - {fileID: 11400000, guid: 039c90ad77b238d4291f3f496fd958ad, type: 2}
+  <Team2>k__BackingField:
+  - {fileID: 11400000, guid: d5cf4a64ef030ad48b0b4b2537703f98, type: 2}
+  - {fileID: 11400000, guid: 0c83809575b83c64faabde6fd7782556, type: 2}
+  - {fileID: 11400000, guid: 30d0e6fa48ddf4943a7c7ea403323154, type: 2}

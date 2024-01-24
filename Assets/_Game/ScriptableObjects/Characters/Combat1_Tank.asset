@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: Combat1_Tank
   m_EditorClassIdentifier: 
   <TotalHealth>k__BackingField: 0
-  <Skills>k__BackingField: []
+  <Initiative>k__BackingField: 0
+  <Skills>k__BackingField:
+  - {fileID: 11400000, guid: 5b006baabb98fa24995a99049a89bb38, type: 2}
+  - {fileID: 11400000, guid: b065f2e4301650744be9b3e9f98d522c, type: 2}
+  - {fileID: 11400000, guid: e82b637c4ccf47d4cbe2b691cd01becc, type: 2}
