@@ -22,12 +22,30 @@ public class Game : Singleton<Game>
         _combat = new Combat();
         _combat.Init(_combatDatas[_currentCombatIndex]);
         _uiView.Init(_combat);
-        _combat.StartCombat();
-    }
+        // _combat.Events.OnCharacterGetsTurn += MakeNextTurn;  // for auto combat or smth
 
+        _combat.StartCombat();
+
+    }
 
     void Update()
     {
         
+    }
+
+
+    int _madeTurns = 0;
+    void MakeNextTurn(Character character)
+    {
+        Debug.Log($"Character {character._data.name} made turn");
+        _madeTurns++;
+        if (_madeTurns >= 10)
+        {
+            return;
+        }
+        else
+        {
+            _combat.MakeNextAITurn();
+        }
     }
 }

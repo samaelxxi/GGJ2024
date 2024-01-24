@@ -16,6 +16,10 @@ public class Character
     public int Health => _health;
 
 
+    AIBrain _aiBrain;
+
+
+
     public Character(CharacterData data)
     {
         _data = data;
@@ -23,8 +27,23 @@ public class Character
         _effects = new List<Effect>();
     }
 
+    public void InitAI(Combat combat)
+    {
+        _aiBrain = new AIBrain(combat);
+
+        foreach (var skill in _data.Skills)
+            _aiBrain.AddSkill(skill, this);
+    }
+
+    public AIAction GetAITurn()
+    {
+        return _aiBrain.ChooseBestAction();
+    }
+
     public void GetDamage(int damage)
     {
+        Debug.Log($"Character {_data.name} gets {damage} damage");
+
         var def = _effects.FirstOrDefault(e => e.Type == EffectType.Defense);
         if (def != null)
         {
@@ -47,6 +66,7 @@ public class Character
 
         if (_health <= 0)
         {
+            Debug.Log($"Character {_data.name} is dead");
             _health = 0;
             _isDead = true;
             Game.Instance.Events.CharacterDied(this);
@@ -59,6 +79,8 @@ public class Character
 
     public void GetHeal(int heal)
     {
+        Debug.Log($"Character {_data.name} gets {heal} heal");
+
         int oldHp = _health;
         _health += heal;
         if (_health > _data.TotalHealth)
@@ -70,6 +92,8 @@ public class Character
 
     public void AddEffect(Effect effect)
     {
+        Debug.Log($"Character {_data.name} gets effect {effect.Type} {effect.Amount} {effect.Duration}");
+
         _effects.Add(effect);
         Game.Instance.Events.CharactersGetsEffect(this, effect);
     }
