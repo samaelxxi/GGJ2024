@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterView : MonoBehaviour
@@ -22,6 +18,7 @@ public class CharacterView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Character.IsDead) return;
         if(_isHighlighted)
         {
             _isHighlighted = false;
@@ -46,5 +43,11 @@ public class CharacterView : MonoBehaviour
     public void Highlight()
     {
         _isHighlighted = true;
+    }
+
+    internal void Die()
+    {
+        _body.localScale = new Vector3(1.3f, 0.3f, 1);
+        Debug.Log("Visualize dead");
     }
 }

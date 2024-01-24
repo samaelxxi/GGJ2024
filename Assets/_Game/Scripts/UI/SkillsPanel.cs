@@ -11,7 +11,6 @@ public class SkillsPanel : MonoBehaviour
 
         foreach(Skill skill in skills)
         {
-            Debug.Log(skill.name);
             SkillBtn newBtn = Instantiate(SkillBtnPrefab, transform);
             newBtn.Init(skill, SkillSpritesRegistry.GetSprite(skill));
         }

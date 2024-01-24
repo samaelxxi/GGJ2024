@@ -85,6 +85,11 @@ public class UIView : MonoBehaviour
                     _visualEvents.AddLast(new CharacterDamagedVisualEvent(c, damage));
                     _unprocesedEventsInQUeue = true;
         };
+         Game.Instance.Events.OnCharacterDied += (Character c) =>
+        {
+                    _visualEvents.AddLast(new CharacterDeathVE(c));
+                    _unprocesedEventsInQUeue = true;
+        };
         
     }
     // Update is called once per frame
@@ -110,21 +115,7 @@ public class UIView : MonoBehaviour
         }
     }
 
-    void OnCharactersTurn(Character character)
-    {
-        if (_activeCharacterView = PlayerCharactersViews.FirstOrDefault((CharacterView cv) => cv.Character == character))
-        {
-            Debug.Log("Player team turn");
-            _activeCharacterView.SetSelectedState(true);
-            SkillsPanel.ShowSkills(_activeCharacterView.Character._data.Skills);
-            _state = State.ChooseSkill;
-        }
-        else if (_activeCharacterView = NPCCharactersViews.FirstOrDefault((CharacterView cv) => cv.Character == character))
-        {
-            Debug.Log("NPC team turn");
-            SkillsPanel.Hide();
-        }
-    }
+
     IEnumerator DisplayActions()
     {
         foreach (VisualEvent ve in _visualEvents)
@@ -205,8 +196,6 @@ public class UIView : MonoBehaviour
         }
 
     }
-    void SetCursorInTargetState() { }
-
     private enum State
     {
         ChooseSkill,
