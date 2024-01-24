@@ -23,6 +23,7 @@ public class Game : Singleton<Game>
         _combat.Init(_combatDatas[_currentCombatIndex]);
         _uiView.Init(_combat);
         // _combat.Events.OnCharacterGetsTurn += MakeNextTurn;  // for auto combat or smth
+        // _combat.Events.OnCombatEnd += OnCombatEnd;
 
         _combat.StartCombat();
 
@@ -35,11 +36,15 @@ public class Game : Singleton<Game>
 
 
     int _madeTurns = 0;
+    bool _combatEnded = false;
+
+    void OnCombatEnd(int team) { _combatEnded = true;}
+
     void MakeNextTurn(Character character)
     {
         Debug.Log($"Character {character.Name} made turn");
         _madeTurns++;
-        if (_madeTurns >= 10)
+        if (_combatEnded)
         {
             return;
         }

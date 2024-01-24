@@ -8,6 +8,9 @@ using NaughtyAttributes;
 public class Skill : ScriptableObject
 {
     [field: SerializeField]
+    public string Name { get; private set; }
+
+    [field: SerializeField]
     public bool IsAttack { get; private set; }
     [field: SerializeField, ShowIf("IsAttack")]
     public int Damage { get; private set; }
@@ -29,4 +32,19 @@ public class Skill : ScriptableObject
     public int EffectValue { get; private set; }
     [field: SerializeField, ShowIf("IsAddsEffect")]
     public int EffectDuration { get; private set; }
+
+
+
+    // [field: SerializeField]
+    // public List<Consideration> Considerations { get; private set; }
+
+    public int CalculateDamage(Character user, Character target)
+    {
+        return Mathf.Min(Damage, target.Health);
+    }
+
+    public int CalculateHeal(Character user, Character target)
+    {
+        return Mathf.Min(HealAmount, target.MaxHealth - target.Health);
+    }
 }

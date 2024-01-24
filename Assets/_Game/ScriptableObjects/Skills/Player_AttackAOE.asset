@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6297f7ce96a6a084aac788a38fe924a0, type: 3}
   m_Name: Player_AttackAOE
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: PlayerAttackAOE
   <IsAttack>k__BackingField: 1
   <Damage>k__BackingField: 1
   <IsHeal>k__BackingField: 0

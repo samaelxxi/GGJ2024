@@ -18,6 +18,7 @@ public class Character
 
     public bool IsDead => _isDead;
     public int Health => _health;
+    public int MaxHealth => _data.TotalHealth;
     public int Team => _team;
 
 

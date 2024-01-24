@@ -113,7 +113,18 @@ public class Combat
         _turnOrder.Add(character);
         _turnOrder.RemoveAll(x => x.IsDead);
 
-        StartNewTurn();
+        if (_turnOrder.All(x => GetCharacterTeam(x) == 0))
+        {
+            Debug.Log("Team 0 wins");
+            Events.CombatEnd(0);
+        }
+        else if (_turnOrder.All(x => GetCharacterTeam(x) == 1))
+        {
+            Debug.Log("Team 1 wins");
+            Events.CombatEnd(1);
+        }
+        else
+            StartNewTurn();
     }
 
     public void UseSkill(Character user, Skill skill, Character target)
