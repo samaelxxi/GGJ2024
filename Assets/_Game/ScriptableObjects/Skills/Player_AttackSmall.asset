@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6297f7ce96a6a084aac788a38fe924a0, type: 3}
-  m_Name: Player_Damage_Small
+  m_Name: Player_AttackSmall
   m_EditorClassIdentifier: 
   <IsAttack>k__BackingField: 1
   <Damage>k__BackingField: 3

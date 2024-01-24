@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <TotalHealth>k__BackingField: 0
   <Initiative>k__BackingField: 0
-  <Skills>k__BackingField: []
+  <Skills>k__BackingField:
+  - {fileID: 11400000, guid: 3cfccefb9c713ab46873e9c3b77f3ffa, type: 2}
+  - {fileID: 11400000, guid: be045e195c36d654db559e34ec973351, type: 2}

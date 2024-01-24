@@ -224,4 +224,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillName: {fileID: 6334861674314592431}
+  Background: {fileID: 7899796601739298599}
   Skill: {fileID: 0}

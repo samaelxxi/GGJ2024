@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SkillBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
 
     [SerializeField] TextMeshProUGUI SkillName;
-    public Skill Skill;
+    [SerializeField] Image Background;
+    [HideInInspector] public Skill Skill;
 
 
     bool _isSelected = false;
@@ -20,9 +21,11 @@ public class SkillBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
 
-    public void Init(Skill skill){
+    public void Init(Skill skill, Sprite backgroundSprite){
         Skill = skill;
         SkillName.text = Skill.name;
+        Background.sprite = backgroundSprite;
+        
     }
     public void OnPointerClick(PointerEventData eventData)
     {

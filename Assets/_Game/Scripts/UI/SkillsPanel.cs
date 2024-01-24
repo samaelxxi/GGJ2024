@@ -5,6 +5,7 @@ using UnityEngine;
 public class SkillsPanel : MonoBehaviour
 {
     [SerializeField] SkillBtn SkillBtnPrefab;
+    [SerializeField] SkillsViewRegistry SkillSpritesRegistry;
     public void ShowSkills(List<Skill> skills)
     {
 
@@ -12,7 +13,7 @@ public class SkillsPanel : MonoBehaviour
         {
             Debug.Log(skill.name);
             SkillBtn newBtn = Instantiate(SkillBtnPrefab, transform);
-            newBtn.Init(skill);
+            newBtn.Init(skill, SkillSpritesRegistry.GetSprite(skill));
         }
     }
 
