@@ -37,7 +37,7 @@ public class Game : Singleton<Game>
     int _madeTurns = 0;
     void MakeNextTurn(Character character)
     {
-        Debug.Log($"Character {character._data.name} made turn");
+        Debug.Log($"Character {character.Name} made turn");
         _madeTurns++;
         if (_madeTurns >= 10)
         {

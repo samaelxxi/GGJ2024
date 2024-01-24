@@ -21,7 +21,7 @@ public class SkillAction : AIAction
             {
                 User = User,
                 Skill = Skill,
-                Target = null
+                Target = Skill.IsAttack ? combat.GetAnyEnemy(User) : combat.GetAnyFriend(User)
             });
             yield return action;
         }

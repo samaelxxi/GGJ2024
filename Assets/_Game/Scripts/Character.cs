@@ -7,24 +7,30 @@ public class Character
 {
     public CharacterData _data;
 
+    public string Name;
+
     List<Effect> _effects;
 
     int _health;
     bool _isDead;
+    int _team = -1;
+
 
     public bool IsDead => _isDead;
     public int Health => _health;
+    public int Team => _team;
 
 
     AIBrain _aiBrain;
 
 
 
-    public Character(CharacterData data)
+    public Character(CharacterData data, int team = -1)
     {
         _data = data;
         _health = data.TotalHealth;
         _effects = new List<Effect>();
+        _team = team;
     }
 
     public void InitAI(Combat combat)
@@ -42,7 +48,7 @@ public class Character
 
     public void GetDamage(int damage)
     {
-        Debug.Log($"Character {_data.name} gets {damage} damage");
+        Debug.Log($"Character {Name} gets {damage} damage");
 
         var def = _effects.FirstOrDefault(e => e.Type == EffectType.Defense);
         if (def != null)
@@ -66,7 +72,7 @@ public class Character
 
         if (_health <= 0)
         {
-            Debug.Log($"Character {_data.name} is dead");
+            Debug.Log($"Character {Name} is dead");
             _health = 0;
             _isDead = true;
             Game.Instance.Events.CharacterDied(this);
@@ -79,7 +85,7 @@ public class Character
 
     public void GetHeal(int heal)
     {
-        Debug.Log($"Character {_data.name} gets {heal} heal");
+        Debug.Log($"Character {Name} gets {heal} heal");
 
         int oldHp = _health;
         _health += heal;
@@ -92,7 +98,7 @@ public class Character
 
     public void AddEffect(Effect effect)
     {
-        Debug.Log($"Character {_data.name} gets effect {effect.Type} {effect.Amount} {effect.Duration}");
+        Debug.Log($"Character {Name} gets effect {effect.Type} {effect.Amount} {effect.Duration}");
 
         _effects.Add(effect);
         Game.Instance.Events.CharactersGetsEffect(this, effect);
