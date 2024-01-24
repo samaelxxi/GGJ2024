@@ -11,6 +11,8 @@ public abstract class AIAction
     List<Consideration> _considerations = new();
 
 
+    public string debugStr = "";
+
     public AIAction() {}
 
     public AIAction(AIAction action, AIContext context)
@@ -29,16 +31,14 @@ public abstract class AIAction
         float score = 1f;
         float compensationFactor = 1.0f - (1.0f / _considerations.Count);
 
-        #if DEBUG_AI
-            handler.DebugStr += $"{GetType().Name} : {_context}\n";
-        #endif
+        debugStr = "";
+        debugStr += $"{_context.User.Name} {_context.Skill} {_context.Target.Name}\n";
+
         foreach (var consideration in _considerations)
         {
             float considerationScore = consideration.Score(combat, _context);
 
-            #if DEBUG_AI
-                handler.DebugStr += $"\t {consideration.GetType().Name}: {considerationScore}\n";
-            #endif
+            debugStr += $"\t {consideration.GetType().Name}: {considerationScore}\n";
 
             if (considerationScore == 0)
                 return 0;
@@ -47,9 +47,7 @@ public abstract class AIAction
             considerationScore = considerationScore + (modification * considerationScore);
             score *= considerationScore;
         }
-        #if DEBUG_AI
-            handler.DebugStr += "\n";
-        #endif
+        debugStr += $"Total score: {score}\n";
 
         return score;
     }

@@ -14,6 +14,7 @@ public class CombatEvents
     public event Action<Character, Effect> OnCharactersGetsEffect;
     public event Action<Character, Effect> OnCharacterEffectEnd;
     public event Action<Character> OnCharacterGetsTurn;
+    public event Action<int> OnCombatEnd;
 
 
 
@@ -56,5 +57,10 @@ public class CombatEvents
     public void CharacterGetsTurn(Character character)
     {
         OnCharacterGetsTurn?.Invoke(character);
+    }
+
+    public void CombatEnd(int team)
+    {
+        OnCombatEnd?.Invoke(team);
     }
 }
