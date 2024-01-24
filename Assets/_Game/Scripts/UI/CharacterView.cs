@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterView : MonoBehaviour
@@ -48,6 +49,7 @@ public class CharacterView : MonoBehaviour
     internal void Die()
     {
         _body.localScale = new Vector3(1.3f, 0.3f, 1);
+        Destroy(Healthbar.gameObject);
         Debug.Log("Visualize dead");
     }
 }

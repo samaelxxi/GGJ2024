@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using NaughtyAttributes;
-using NaughtyAttributes.Test;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIView : MonoBehaviour
@@ -17,7 +14,7 @@ public class UIView : MonoBehaviour
     List<CharacterView> PlayerCharactersViews = new List<CharacterView>(3);
     List<CharacterView> NPCCharactersViews = new List<CharacterView>(3);
 
-    LinkedList<VisualEvent> _visualEvents;
+    Queue<VisualEvent> _visualEvents;
 
     Combat _combat;
     State _state = State.ChooseTarget;
@@ -74,23 +71,28 @@ public class UIView : MonoBehaviour
     }
     void SubscribeToEvents()
     {
-        _visualEvents = new LinkedList<VisualEvent>();
+        _visualEvents = new Queue<VisualEvent>();
         Game.Instance.Events.OnCharacterGetsTurn += (Character c) =>
                 {
-                    _visualEvents.AddLast(new CharacterGetsTurnVE(c));
+                    _visualEvents.Enqueue(new CharacterGetsTurnVE(c));
                     _unprocesedEventsInQUeue = true;
                 };
         Game.Instance.Events.OnCharacterDamaged += (Character c, int damage) =>
         {
-                    _visualEvents.AddLast(new CharacterDamagedVisualEvent(c, damage));
-                    _unprocesedEventsInQUeue = true;
+            _visualEvents.Enqueue(new CharacterDamagedVisualEvent(c, damage));
+            _unprocesedEventsInQUeue = true;
         };
-         Game.Instance.Events.OnCharacterDied += (Character c) =>
+        Game.Instance.Events.OnCharacterHealed += (Character c, int heal) =>
         {
-                    _visualEvents.AddLast(new CharacterDeathVE(c));
-                    _unprocesedEventsInQUeue = true;
+            _visualEvents.Enqueue(new CharacterHealedVE(c, heal));
+            _unprocesedEventsInQUeue = true;
         };
-        
+        Game.Instance.Events.OnCharacterDied += (Character c) =>
+       {
+           _visualEvents.Enqueue(new CharacterDeathVE(c));
+           _unprocesedEventsInQUeue = true;
+       };
+
     }
     // Update is called once per frame
     void Update()
@@ -118,17 +120,26 @@ public class UIView : MonoBehaviour
 
     IEnumerator DisplayActions()
     {
-        foreach (VisualEvent ve in _visualEvents)
+        while (_visualEvents.Count > 0)
         {
-            yield return StartCoroutine(ve.Display());
-            if (ve is CharacterGetsTurnVE charTurnVE && charTurnVE.CharacterView.Character.Team == 0)
+            VisualEvent visualEvent = _visualEvents.Dequeue();
+            yield return StartCoroutine(visualEvent.Display());
+            if (visualEvent is CharacterGetsTurnVE charTurnVE)
             {
-                _activeCharacterView = charTurnVE.CharacterView;
-                _state = State.ChooseSkill;
-                SkillsPanel.ShowSkills(_activeCharacterView.Character._data.Skills);
+                if (charTurnVE.CharacterView.Character.Team == 0)
+                {
+                    _activeCharacterView = charTurnVE.CharacterView;
+                    _state = State.ChooseSkill;
+                    SkillsPanel.ShowSkills(_activeCharacterView.Character._data.Skills);
+                }
+                else
+                {
+                    _combat.MakeNextAITurn();
+                }
+
             }
+
         }
-        _visualEvents.Clear();
     }
     void DisplayActionUpdate()
     {
@@ -170,7 +181,7 @@ public class UIView : MonoBehaviour
             if (!_combat.IsSkillUsageCorrect(_activeCharacterView.Character, _selectedSkillBtn.Skill, _targetCharacter))
             {
                 _targetCharacter = null;
-                if (Input.GetMouseButtonDown(0)) { /* play nope sound  */} 
+                if (Input.GetMouseButtonDown(0)) { /* play nope sound  */}
                 return;
             }
             charecterView.Highlight();
