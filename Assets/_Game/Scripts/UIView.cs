@@ -17,8 +17,12 @@ public class UIView : MonoBehaviour
     List<CharacterView> PlayerCharactersViews = new List<CharacterView>(3);
     List<CharacterView> NPCCharactersViews = new List<CharacterView>(3);
 
+    LinkedList<VisualEvent> _visualEvents;
+
     Combat _combat;
     State _state = State.ChooseTarget;
+
+    bool _unprocesedEventsInQUeue = false;
 
     Character _targetCharacter;
     CharacterView _activeCharacterView;
@@ -43,6 +47,13 @@ public class UIView : MonoBehaviour
     {
         _combat = combat;
         // Create characters
+        CreateCharacters();
+        SubscribeToEvents();
+        _state = State.DisplayAction;
+    }
+
+    void CreateCharacters()
+    {
         int i = 0;
         foreach (Character character in _combat._team1)
         {
@@ -60,22 +71,41 @@ public class UIView : MonoBehaviour
             NPCCharactersViews.Add(newCharacterView);
             i++;
         }
-        Game.Instance.Events.OnCharacterGetsTurn += OnCharactersTurn;
     }
-
+    void SubscribeToEvents()
+    {
+        _visualEvents = new LinkedList<VisualEvent>();
+        Game.Instance.Events.OnCharacterGetsTurn += (Character c) =>
+                {
+                    _visualEvents.AddLast(new CharacterGetsTurnVE(c));
+                    _unprocesedEventsInQUeue = true;
+                };
+        Game.Instance.Events.OnCharacterDamaged += (Character c, int damage) =>
+        {
+                    _visualEvents.AddLast(new CharacterDamagedVisualEvent(c, damage));
+                    _unprocesedEventsInQUeue = true;
+        };
+        
+    }
     // Update is called once per frame
     void Update()
     {
         switch (_state)
         {
             case State.DisplayAction:
-
+                DisplayActionUpdate();
                 break;
             case State.ChooseSkill:
                 ChooseSkillUpdate();
                 break;
             case State.ChooseTarget:
                 ChooseTargetUpdate();
+                break;
+            // case State.WaitForEnemyTurnEnd:
+            //     _state = State.ChooseSkill;
+            //     break;
+            default:
+                Debug.LogError("Invalid state");
                 break;
         }
     }
@@ -95,17 +125,34 @@ public class UIView : MonoBehaviour
             SkillsPanel.Hide();
         }
     }
-
+    IEnumerator DisplayActions()
+    {
+        foreach (VisualEvent ve in _visualEvents)
+        {
+            yield return StartCoroutine(ve.Display());
+            if (ve is CharacterGetsTurnVE charTurnVE && charTurnVE.CharacterView.Character.Team == 0)
+            {
+                _activeCharacterView = charTurnVE.CharacterView;
+                _state = State.ChooseSkill;
+                SkillsPanel.ShowSkills(_activeCharacterView.Character._data.Skills);
+            }
+        }
+        _visualEvents.Clear();
+    }
     void DisplayActionUpdate()
     {
-        _state = State.WaitForEnemyTurnEnd;
+        if (_unprocesedEventsInQUeue)
+        {
+            StartCoroutine(DisplayActions());
+            _unprocesedEventsInQUeue = false;
+        }
+        //_state = State.WaitForEnemyTurnEnd;
     }
 
     void ChooseSkillUpdate()
     {
         if (_selectedSkillBtn) // Skill will be set byt skill btn
         {
-            Debug.Log($"{_selectedSkillBtn.name} active");
             _state = State.ChooseTarget;
         }
     }
@@ -128,21 +175,33 @@ public class UIView : MonoBehaviour
 
             CharacterView charecterView = hitObject.GetComponentInParent<CharacterView>();
             if (!charecterView) return;
-            
-            charecterView.Highlight();
-            if (Input.GetMouseButtonDown(0))
+            _targetCharacter = charecterView.Character;
+            if (!_combat.IsSkillUsageCorrect(_activeCharacterView.Character, _selectedSkillBtn.Skill, _targetCharacter))
             {
-                _targetCharacter = charecterView.Character;
-                if(_selectedSkillBtn.Skill.IsAOE) _targetCharacter = null;
-                charecterView.SetSelectedState(true);
-                _combat.UseSkill(_activeCharacterView.Character, _selectedSkillBtn.Skill, _targetCharacter);
-                SkillsPanel.Hide();
-                _state = State.DisplayAction;
-                // execute skill
+                _targetCharacter = null;
+                if (Input.GetMouseButtonDown(0)) { /* play nope sound  */} 
+                return;
+            }
+            charecterView.Highlight();
+            if (_selectedSkillBtn.Skill.IsAOE)
+            {
+                List<CharacterView> WholeTeam = _targetCharacter.Team == 0 ? PlayerCharactersViews : NPCCharactersViews;
+                foreach (var character in WholeTeam)
+                {
+                    character.Highlight();
+                }
             }
 
-            // apply chosen skill
 
+            if (Input.GetMouseButtonDown(0))
+            {
+                //if(_selectedSkillBtn.Skill.IsAOE) _targetCharacter = null;
+                _combat.UseSkill(_activeCharacterView.Character, _selectedSkillBtn.Skill, _targetCharacter);
+                SkillsPanel.Hide();
+                _activeCharacterView.SetSelectedState(false);
+                _selectedSkillBtn = null;
+                _state = State.DisplayAction;
+            }
         }
 
     }
@@ -154,5 +213,11 @@ public class UIView : MonoBehaviour
         ChooseTarget,
         WaitForEnemyTurnEnd,
         DisplayAction
+    }
+
+    public CharacterView GetViewByCharacter(Character character)
+    {
+        List<CharacterView> Team = character.Team == 0 ? PlayerCharactersViews : NPCCharactersViews;
+        return Team.FirstOrDefault((CharacterView cv) => cv.Character == character);
     }
 }

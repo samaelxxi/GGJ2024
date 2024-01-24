@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a61c70788d1b3c4dae414c793a35b46, type: 3}
   m_Name: Combat1_DD
   m_EditorClassIdentifier: 
-  <TotalHealth>k__BackingField: 0
+  <TotalHealth>k__BackingField: 10
   <Initiative>k__BackingField: 0
   <Skills>k__BackingField:
   - {fileID: 11400000, guid: 3cfccefb9c713ab46873e9c3b77f3ffa, type: 2}

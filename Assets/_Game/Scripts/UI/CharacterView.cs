@@ -14,13 +14,10 @@ public class CharacterView : MonoBehaviour
 
     bool _isHighlighted = false;
     // Start is called before the first frame update
-    void UpdateStatus(){
-        Healthbar.SetValue(Character._data.TotalHealth);
+    public void UpdateStatus(){
+        Healthbar.SetValue((float) Character.Health / Character._data.TotalHealth);
     }
-    void Start()
-    {
-        UpdateStatus();
-    }
+    void Start() { UpdateStatus(); }
 
     // Update is called once per frame
     void Update()
@@ -36,7 +33,8 @@ public class CharacterView : MonoBehaviour
     }
 
     public void SetSelectedState(bool isSelected){
-        SelectedMarker.enabled = true;
+        //SelectedMarker.enabled = isSelected;
+        SelectedMarker.color = isSelected ? Color.red : Color.white;
     }
 
     public void Init(Character character)
