@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class CombatEvents : MonoBehaviour
+public class CombatEvents 
 {
     public event Action<Character, int> OnCharacterDamaged;
     public event Action<Character, int> OnCharacterHealed;

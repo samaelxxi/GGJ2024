@@ -20,15 +20,17 @@ public class Combat
         _team1 = new Character[data.Team1.Count];
         for (int i = 0; i < data.Team1.Count; i++)
         {
-            _team1[i] = new Character(data.Team1[i]);
+            _team1[i] = new Character(data.Team1[i], 0);
             _team1[i].InitAI(this);  // TODO comment
+            _team1[i].Name = $"Team1_{i}";
         }
 
         _team2 = new Character[data.Team2.Count];
         for (int i = 0; i < data.Team2.Count; i++)
         {
-            _team2[i] = new Character(data.Team2[i]);
+            _team2[i] = new Character(data.Team2[i], 1);
             _team2[i].InitAI(this);
+            _team2[i].Name = $"Team2_{i}";
         }
 
         _turnOrder.AddRange(_team1);
@@ -38,12 +40,14 @@ public class Combat
 
     public int GetCharacterTeam(Character character)
     {
+        return character.Team;
+
         if (_team1.Contains(character))
             return 0;
         else if (_team2.Contains(character))
             return 1;
         else
-            Debug.LogError("Character not found in any team");
+            Debug.LogError($"Character {character.Name} not found in any team");
         return -1;
     }
 
@@ -61,6 +65,16 @@ public class Combat
         }
     }
 
+    public Character GetAnyEnemy(Character character)
+    {
+        foreach (var enemy in _turnOrder)
+        {
+            if (GetCharacterTeam(enemy) != GetCharacterTeam(character))
+                return enemy;
+        }
+        return null;
+    }
+
     public IEnumerable<Character> GetFriends(Character character)
     {
         foreach (var friend in _turnOrder)
@@ -68,6 +82,16 @@ public class Combat
             if (GetCharacterTeam(friend) == GetCharacterTeam(character))
                 yield return friend;
         }
+    }
+
+    public Character GetAnyFriend(Character character)
+    {
+        foreach (var friend in _turnOrder)
+        {
+            if (GetCharacterTeam(friend) == GetCharacterTeam(character))
+                return friend;
+        }
+        return null;
     }
 
     void StartNewTurn()
@@ -92,14 +116,14 @@ public class Combat
         StartNewTurn();
     }
 
-    public void UseSkill(Character user, Skill skill, Character target=null)
+    public void UseSkill(Character user, Skill skill, Character target)
     {
         if (!IsSkillUsageCorrect(user, skill, target))
         {
-            Debug.LogError($"Skill usage is incorrect: {skill.name} by {user._data.name} on {target._data.name}");
+            Debug.LogError($"Skill usage is incorrect: {skill.name} by {user.Name} on {target.Name}");
             return;
         }
-        Debug.Log($"Skill usage: {skill.name} by {user._data.name} on {target._data.name}");
+        Debug.Log($"Skill usage: {skill.name} by {user.Name} on {target.Name}");
 
         if (skill.IsAttack)
         {
@@ -146,14 +170,14 @@ public class Combat
         EndTurn();
     }
 
-    public bool IsSkillUsageCorrect(Character user, Skill skill, Character target=null)
+    public bool IsSkillUsageCorrect(Character user, Skill skill, Character target)
     {
-        if (skill.IsAttack && GetCharacterTeam(user) == GetCharacterTeam(target))
+        if (skill.IsAttack && user.Team == target.Team)
             return false;
-        if (skill.IsHeal && GetCharacterTeam(user) != GetCharacterTeam(target))
+        if (skill.IsHeal && user.Team != target.Team)
             return false;
-        if (skill.IsAOE && target != null)
-            return false;
+        // if (skill.IsAOE && target != null)
+        //     return false;
         return true; 
     }
 }

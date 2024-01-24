@@ -21,6 +21,7 @@ public class AIBrain
             User = user
         };
         _actions.Add(action);
+        action.AddConsideration(new ConsiderationRandom());
     }
 
     public AIAction ChooseBestAction()
