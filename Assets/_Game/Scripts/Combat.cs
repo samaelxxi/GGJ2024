@@ -136,6 +136,8 @@ public class Combat
         }
         Debug.Log($"Skill usage: {skill.name} by {user.Name} on {target.Name}");
 
+        Events.SkillUsed(user, skill, target);
+
         if (skill.IsAttack)
         {
             if (skill.IsAOE)
