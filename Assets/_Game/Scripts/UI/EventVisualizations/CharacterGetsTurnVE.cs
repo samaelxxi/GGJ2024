@@ -12,7 +12,6 @@ public class CharacterGetsTurnVE : VisualEvent
     }
     public override IEnumerator Display()
     {
-        _characterView.SetSelectedState(true);
         yield return null;
     }
 }
