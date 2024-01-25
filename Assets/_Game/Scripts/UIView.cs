@@ -96,6 +96,11 @@ public class UIView : MonoBehaviour
            _visualEvents.Enqueue(new CharacterDeathVE(c));
            _unprocesedEventsInQUeue = true;
        };
+        Game.Instance.Events.OnSkillUsed += (Character user, Skill skill, List<Character> targets) =>
+        {
+            _visualEvents.Enqueue(new CharacterUsesSkillVE(user, skill, targets));
+            _unprocesedEventsInQUeue = true;
+        };
 
     }
     // Update is called once per frame
