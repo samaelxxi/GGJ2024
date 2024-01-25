@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RegistryList:
   - Key: {fileID: 11400000, guid: 8c33e3c1d784c034189a4438f8a3a3d5, type: 2}
-    Value: {fileID: 94300783615745632, guid: 8572dd1050e9cac4eb83c77939ecd762, type: 3}
+    Value: {fileID: 94300783615745632, guid: 06d0f8035a3cea04a84f73b77f52c524, type: 3}
   - Key: {fileID: 11400000, guid: 039c90ad77b238d4291f3f496fd958ad, type: 2}
-    Value: {fileID: 94300783615745632, guid: 1e4c4c1bbb1695d4085d6068b7a9ec19, type: 3}
+    Value: {fileID: 94300783615745632, guid: 06d0f8035a3cea04a84f73b77f52c524, type: 3}
   - Key: {fileID: 11400000, guid: 38c7068af1b52974db236f17a0a6d110, type: 2}
-    Value: {fileID: 94300783615745632, guid: 1e4c4c1bbb1695d4085d6068b7a9ec19, type: 3}
-  Default: {fileID: 94300783615745632, guid: 1e4c4c1bbb1695d4085d6068b7a9ec19, type: 3}
+    Value: {fileID: 94300783615745632, guid: 06d0f8035a3cea04a84f73b77f52c524, type: 3}
+  Default: {fileID: 94300783615745632, guid: 06d0f8035a3cea04a84f73b77f52c524, type: 3}

@@ -4,5 +4,7 @@ using UnityEngine;
 
 public abstract class VisualEvent
 {
+
     public abstract IEnumerator Display();
+
 }

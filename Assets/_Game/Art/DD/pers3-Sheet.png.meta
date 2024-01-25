@@ -126,12 +126,12 @@ TextureImporter:
       name: pers3-Sheet_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 309
-        width: 61
-        height: 77
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 300
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,12 +147,12 @@ TextureImporter:
       name: pers3-Sheet_1
       rect:
         serializedVersion: 2
-        x: 122
-        y: 309
-        width: 61
-        height: 77
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 100
+        y: 300
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,12 +168,12 @@ TextureImporter:
       name: pers3-Sheet_2
       rect:
         serializedVersion: 2
-        x: 222
-        y: 309
-        width: 61
-        height: 77
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 200
+        y: 300
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,12 +189,12 @@ TextureImporter:
       name: pers3-Sheet_3
       rect:
         serializedVersion: 2
-        x: 323
-        y: 309
-        width: 60
-        height: 76
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 300
+        y: 300
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,12 +210,12 @@ TextureImporter:
       name: pers3-Sheet_4
       rect:
         serializedVersion: 2
-        x: 22
-        y: 209
-        width: 61
-        height: 77
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 200
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -231,12 +231,12 @@ TextureImporter:
       name: pers3-Sheet_5
       rect:
         serializedVersion: 2
-        x: 122
-        y: 209
-        width: 61
-        height: 77
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 100
+        y: 200
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -252,12 +252,12 @@ TextureImporter:
       name: pers3-Sheet_6
       rect:
         serializedVersion: 2
-        x: 222
-        y: 209
-        width: 61
-        height: 77
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 200
+        y: 200
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -273,12 +273,12 @@ TextureImporter:
       name: pers3-Sheet_7
       rect:
         serializedVersion: 2
-        x: 322
-        y: 209
-        width: 63
-        height: 77
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 300
+        y: 200
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -294,12 +294,12 @@ TextureImporter:
       name: pers3-Sheet_8
       rect:
         serializedVersion: 2
-        x: 422
-        y: 209
-        width: 67
-        height: 77
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 400
+        y: 200
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -312,36 +312,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pers3-Sheet_9
-      rect:
-        serializedVersion: 2
-        x: 22
-        y: 109
-        width: 61
-        height: 77
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e3dbfd9a0d8a8c348bdbd98230006dd1
-      internalID: -1131172339
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: pers3-Sheet_10
       rect:
         serializedVersion: 2
-        x: 122
-        y: 109
-        width: 61
-        height: 77
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 100
+        y: 100
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -357,12 +336,12 @@ TextureImporter:
       name: pers3-Sheet_11
       rect:
         serializedVersion: 2
-        x: 222
-        y: 109
-        width: 61
-        height: 77
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 200
+        y: 100
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -378,12 +357,12 @@ TextureImporter:
       name: pers3-Sheet_12
       rect:
         serializedVersion: 2
-        x: 322
-        y: 109
-        width: 61
-        height: 77
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 300
+        y: 100
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -399,12 +378,12 @@ TextureImporter:
       name: pers3-Sheet_13
       rect:
         serializedVersion: 2
-        x: 22
-        y: 9
-        width: 61
-        height: 89
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -420,12 +399,12 @@ TextureImporter:
       name: pers3-Sheet_14
       rect:
         serializedVersion: 2
-        x: 122
-        y: 9
-        width: 61
-        height: 87
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 100
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -441,12 +420,12 @@ TextureImporter:
       name: pers3-Sheet_15
       rect:
         serializedVersion: 2
-        x: 222
-        y: 9
-        width: 61
-        height: 85
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 200
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -462,12 +441,12 @@ TextureImporter:
       name: pers3-Sheet_16
       rect:
         serializedVersion: 2
-        x: 322
-        y: 9
-        width: 61
-        height: 82
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 300
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -483,12 +462,12 @@ TextureImporter:
       name: pers3-Sheet_17
       rect:
         serializedVersion: 2
-        x: 422
-        y: 9
-        width: 61
-        height: 79
-      alignment: 6
-      pivot: {x: 0, y: 0}
+        x: 400
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

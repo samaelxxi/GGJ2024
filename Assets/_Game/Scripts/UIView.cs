@@ -12,12 +12,15 @@ public class UIView : MonoBehaviour
     [SerializeField] ActivCharacterMarker ActiveCaracterMarker;
 
     [SerializeField] SkillsPanel SkillsPanel;
+
+    [SerializeField] King _king;
     public Image DramaticShade;
 
     List<CharacterView> PlayerCharactersViews = new List<CharacterView>(3);
     List<CharacterView> NPCCharactersViews = new List<CharacterView>(3);
 
     Queue<VisualEvent> _visualEvents;
+    VisualEvent _lastInQueue;
 
     Combat _combat;
     State _state = State.ChooseTarget;
@@ -76,31 +79,32 @@ public class UIView : MonoBehaviour
     void SubscribeToEvents()
     {
         _visualEvents = new Queue<VisualEvent>();
-        Game.Instance.Events.OnCharacterGetsTurn += (Character c) =>
-                {
-                    _visualEvents.Enqueue(new CharacterGetsTurnVE(c));
-                    _unprocesedEventsInQUeue = true;
-                };
-        Game.Instance.Events.OnCharacterDamaged += (Character c, int damage) =>
+        Game.Instance.Events.OnCharacterGetsTurn += (Character c) => AddVisualEvent(new CharacterGetsTurnVE(c));
+         
+        Game.Instance.Events.OnCharacterDamaged += (Character c, int damage) => AddVisualEvent(new CharacterDamagedVisualEvent(c, damage));
+            
+        Game.Instance.Events.OnCharacterHealed += (Character c, int heal) => AddVisualEvent(new CharacterHealedVE(c, heal));
+            
+        Game.Instance.Events.OnCharacterDied += (Character c) => AddVisualEvent(new CharacterDeathVE(c));
+    
+        Game.Instance.Events.OnSkillUsed += (Character user, Skill skill, List<Character> targets) => AddVisualEvent(new CharacterUsesSkillVE(user, skill, targets));
+
+    }
+
+    void AddVisualEvent(VisualEvent newVisualEvent)
+    {
+        if(newVisualEvent is CharacterUsesSkillVE skillEvent)
         {
-            _visualEvents.Enqueue(new CharacterDamagedVisualEvent(c, damage));
-            _unprocesedEventsInQUeue = true;
-        };
-        Game.Instance.Events.OnCharacterHealed += (Character c, int heal) =>
+            skillEvent.CourutineOvner = this;
+        }
+        if(_lastInQueue != null && _lastInQueue is CharacterUsesSkillVE parentSkillEvent && parentSkillEvent.AttachVisualEvent(newVisualEvent))
         {
-            _visualEvents.Enqueue(new CharacterHealedVE(c, heal));
-            _unprocesedEventsInQUeue = true;
-        };
-        Game.Instance.Events.OnCharacterDied += (Character c) =>
-       {
-           _visualEvents.Enqueue(new CharacterDeathVE(c));
-           _unprocesedEventsInQUeue = true;
-       };
-        Game.Instance.Events.OnSkillUsed += (Character user, Skill skill, List<Character> targets) =>
-        {
-            _visualEvents.Enqueue(new CharacterUsesSkillVE(user, skill, targets));
-            _unprocesedEventsInQUeue = true;
-        };
+            // event is attached to the last in queue
+            return;
+        }
+        _lastInQueue = newVisualEvent;
+        _visualEvents.Enqueue(newVisualEvent);
+        _unprocesedEventsInQUeue = true;
 
     }
     // Update is called once per frame
@@ -132,7 +136,13 @@ public class UIView : MonoBehaviour
         while (_visualEvents.Count > 0)
         {
             VisualEvent visualEvent = _visualEvents.Dequeue();
+            if (visualEvent is CharacterUsesSkillVE skillEvent && skillEvent.IsAttack)
+            {
+                _king.Lol(.5f);
+            }
+
             yield return StartCoroutine(visualEvent.Display());
+
             if (visualEvent is CharacterGetsTurnVE charTurnVE)
             {
                 _activeCharacterView = charTurnVE.CharacterView;
@@ -144,9 +154,9 @@ public class UIView : MonoBehaviour
                 }
                 else
                 {
+                    yield return new WaitForSeconds(0.5f);
                     _combat.MakeNextAITurn();
                 }
-
             }
 
         }

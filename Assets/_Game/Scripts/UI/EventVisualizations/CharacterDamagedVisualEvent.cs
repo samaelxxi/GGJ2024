@@ -15,11 +15,10 @@ public class CharacterDamagedVisualEvent : VisualEvent
 
     public override IEnumerator Display()
     {
-         // Spawn particles?
-        _characterView.UpdateStatus();
-        Debug.Log("Visualize damage staert");
-        yield return new WaitForSeconds(1f);
-                Debug.Log("Visualize damage stop");
+        _characterView.DisplayTakeDamage();
+        while(_characterView.InActiveAnimation){
+            yield return null; // skip frame
+        }
 
     }
 }
