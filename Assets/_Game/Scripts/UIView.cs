@@ -2,19 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIView : MonoBehaviour
 {
-    [SerializeField] CharacterView CharacterViewPrefab;
+    [SerializeField] CharactersRegistry CharactersRegistry;
     [SerializeField] List<Transform> PlayerTeamSlots;
     [SerializeField] List<Transform> NPCTeamSlots;
+    [SerializeField] ActivCharacterMarker ActiveCaracterMarker;
 
     [SerializeField] SkillsPanel SkillsPanel;
+
+    [SerializeField] King _king;
+    public Image DramaticShade;
 
     List<CharacterView> PlayerCharactersViews = new List<CharacterView>(3);
     List<CharacterView> NPCCharactersViews = new List<CharacterView>(3);
 
     Queue<VisualEvent> _visualEvents;
+    VisualEvent _lastInQueue;
 
     Combat _combat;
     State _state = State.ChooseTarget;
@@ -24,7 +30,7 @@ public class UIView : MonoBehaviour
     Character _targetCharacter;
     CharacterView _activeCharacterView;
     SkillBtn _selectedSkillBtn;
-    
+
 
     public void SelectSkillBtn(SkillBtn newSkillBtn)
     {
@@ -55,7 +61,7 @@ public class UIView : MonoBehaviour
         int i = 0;
         foreach (Character character in _combat._team1)
         {
-            CharacterView newCharacterView = Instantiate(CharacterViewPrefab, PlayerTeamSlots[i]);
+            CharacterView newCharacterView = Instantiate(CharactersRegistry.Get(character._data), PlayerTeamSlots[i]).GetComponent<CharacterView>();
             newCharacterView.Init(character);
             PlayerCharactersViews.Add(newCharacterView);
             i++;
@@ -63,7 +69,7 @@ public class UIView : MonoBehaviour
         i = 0;
         foreach (Character character in _combat._team2)
         {
-            CharacterView newCharacterView = Instantiate(CharacterViewPrefab, NPCTeamSlots[i]);
+            CharacterView newCharacterView = Instantiate(CharactersRegistry.Get(character._data), NPCTeamSlots[i]).GetComponent<CharacterView>();
             //newCharacterView.transform.localScale = new Vector3(1,-1,1);
             newCharacterView.Init(character);
             NPCCharactersViews.Add(newCharacterView);
@@ -73,26 +79,32 @@ public class UIView : MonoBehaviour
     void SubscribeToEvents()
     {
         _visualEvents = new Queue<VisualEvent>();
-        Game.Instance.Events.OnCharacterGetsTurn += (Character c) =>
-                {
-                    _visualEvents.Enqueue(new CharacterGetsTurnVE(c));
-                    _unprocesedEventsInQUeue = true;
-                };
-        Game.Instance.Events.OnCharacterDamaged += (Character c, int damage) =>
+        Game.Instance.Events.OnCharacterGetsTurn += (Character c) => AddVisualEvent(new CharacterGetsTurnVE(c));
+         
+        Game.Instance.Events.OnCharacterDamaged += (Character c, int damage) => AddVisualEvent(new CharacterDamagedVisualEvent(c, damage));
+            
+        Game.Instance.Events.OnCharacterHealed += (Character c, int heal) => AddVisualEvent(new CharacterHealedVE(c, heal));
+            
+        Game.Instance.Events.OnCharacterDied += (Character c) => AddVisualEvent(new CharacterDeathVE(c));
+    
+        Game.Instance.Events.OnSkillUsed += (Character user, Skill skill, List<Character> targets) => AddVisualEvent(new CharacterUsesSkillVE(user, skill, targets));
+
+    }
+
+    void AddVisualEvent(VisualEvent newVisualEvent)
+    {
+        if(newVisualEvent is CharacterUsesSkillVE skillEvent)
         {
-            _visualEvents.Enqueue(new CharacterDamagedVisualEvent(c, damage));
-            _unprocesedEventsInQUeue = true;
-        };
-        Game.Instance.Events.OnCharacterHealed += (Character c, int heal) =>
+            skillEvent.CourutineOvner = this;
+        }
+        if(_lastInQueue != null && _lastInQueue is CharacterUsesSkillVE parentSkillEvent && parentSkillEvent.AttachVisualEvent(newVisualEvent))
         {
-            _visualEvents.Enqueue(new CharacterHealedVE(c, heal));
-            _unprocesedEventsInQUeue = true;
-        };
-        Game.Instance.Events.OnCharacterDied += (Character c) =>
-       {
-           _visualEvents.Enqueue(new CharacterDeathVE(c));
-           _unprocesedEventsInQUeue = true;
-       };
+            // event is attached to the last in queue
+            return;
+        }
+        _lastInQueue = newVisualEvent;
+        _visualEvents.Enqueue(newVisualEvent);
+        _unprocesedEventsInQUeue = true;
 
     }
     // Update is called once per frame
@@ -124,20 +136,27 @@ public class UIView : MonoBehaviour
         while (_visualEvents.Count > 0)
         {
             VisualEvent visualEvent = _visualEvents.Dequeue();
+            if (visualEvent is CharacterUsesSkillVE skillEvent && skillEvent.IsAttack)
+            {
+                _king.Lol(.5f);
+            }
+
             yield return StartCoroutine(visualEvent.Display());
+
             if (visualEvent is CharacterGetsTurnVE charTurnVE)
             {
+                _activeCharacterView = charTurnVE.CharacterView;
+                ActiveCaracterMarker.AttachTo(_activeCharacterView);
                 if (charTurnVE.CharacterView.Character.Team == 0)
                 {
-                    _activeCharacterView = charTurnVE.CharacterView;
                     _state = State.ChooseSkill;
                     SkillsPanel.ShowSkills(_activeCharacterView.Character._data.Skills);
                 }
                 else
                 {
+                    yield return new WaitForSeconds(0.5f);
                     _combat.MakeNextAITurn();
                 }
-
             }
 
         }
@@ -145,7 +164,7 @@ public class UIView : MonoBehaviour
     }
     void DisplayActionUpdate()
     {
-        if (_unprocesedEventsInQUeue && ! _isProcessingEvents)
+        if (_unprocesedEventsInQUeue && !_isProcessingEvents)
         {
             _isProcessingEvents = true;
             _unprocesedEventsInQUeue = false;
@@ -203,7 +222,7 @@ public class UIView : MonoBehaviour
                 //if(_selectedSkillBtn.Skill.IsAOE) _targetCharacter = null;
                 _combat.UseSkill(_activeCharacterView.Character, _selectedSkillBtn.Skill, _targetCharacter);
                 SkillsPanel.Hide();
-                _activeCharacterView.SetSelectedState(false);
+                ActiveCaracterMarker.AttachTo(_activeCharacterView);
                 _selectedSkillBtn = null;
                 _state = State.DisplayAction;
             }

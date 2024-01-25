@@ -17,16 +17,19 @@ public class Game : Singleton<Game>
 
     Combat _combat;
 
-    void Start()
+    public override void Awake()
     {
+        base.Awake();
         _combat = new Combat();
         _combat.Init(_combatDatas[_currentCombatIndex]);
         _uiView.Init(_combat);
+    }
+    void Start()
+    {
+        
         // _combat.Events.OnCharacterGetsTurn += MakeNextTurn;  // for auto combat or smth
         // _combat.Events.OnCombatEnd += OnCombatEnd;
-
         _combat.StartCombat();
-
     }
 
     void Update()

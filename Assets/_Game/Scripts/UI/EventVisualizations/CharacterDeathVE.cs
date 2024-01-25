@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class CharacterDeathVE : VisualEvent
@@ -11,8 +12,9 @@ public class CharacterDeathVE : VisualEvent
     }
     public override IEnumerator Display()
     {
-        _characterView.Die();
-        yield return new WaitForSeconds(0.78f);
+        _characterView.DisplayDeath();
+       
+        yield return new WaitForSeconds(1); // skip frame
     }
 
     
