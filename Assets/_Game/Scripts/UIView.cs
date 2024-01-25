@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIView : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class UIView : MonoBehaviour
     [SerializeField] ActivCharacterMarker ActiveCaracterMarker;
 
     [SerializeField] SkillsPanel SkillsPanel;
+    public Image DramaticShade;
 
     List<CharacterView> PlayerCharactersViews = new List<CharacterView>(3);
     List<CharacterView> NPCCharactersViews = new List<CharacterView>(3);
