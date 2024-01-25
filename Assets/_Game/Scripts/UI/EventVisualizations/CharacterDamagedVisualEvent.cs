@@ -17,6 +17,9 @@ public class CharacterDamagedVisualEvent : VisualEvent
     {
          // Spawn particles?
         _characterView.UpdateStatus();
-        yield return new WaitForSeconds(0.5f);
+        Debug.Log("Visualize damage staert");
+        yield return new WaitForSeconds(1f);
+                Debug.Log("Visualize damage stop");
+
     }
 }
