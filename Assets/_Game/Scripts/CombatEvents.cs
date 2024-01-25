@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class CombatEvents 
 {
+    public event Action<Character, Skill, Character> OnSkillUsed;
     public event Action<Character, int> OnCharacterDamaged;
     public event Action<Character, int> OnCharacterHealed;
     public event Action<Character> OnCharacterDied;
@@ -18,11 +19,15 @@ public class CombatEvents
 
 
 
-   public void CharacterDamaged(Character character, int heal)
+    public void CharacterDamaged(Character character, int heal)
     {
         OnCharacterDamaged?.Invoke(character, heal);
     }
 
+    public void SkillUsed(Character user, Skill skill, Character target)
+    {
+        OnSkillUsed?.Invoke(user, skill, target);
+    }
 
     public void CharacterHealed(Character character, int heal)
     {
