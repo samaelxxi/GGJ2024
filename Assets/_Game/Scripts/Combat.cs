@@ -136,7 +136,8 @@ public class Combat
         }
         Debug.Log($"Skill usage: {skill.name} by {user.Name} on {target.Name}");
 
-        Events.SkillUsed(user, skill, target);
+
+        HashSet<Character> targets = new();
 
         if (skill.IsAttack)
         {
@@ -148,12 +149,14 @@ public class Combat
                         continue;
                     Events.CharacterAttacks(user, character);
                     character.GetDamage(skill.Damage);
+                    targets.Add(character);
                 }
             }
             else
             {
                 Events.CharacterAttacks(user, target);
                 target.GetDamage(skill.Damage);
+                targets.Add(target);
             }
         }
         else if (skill.IsHeal)
@@ -166,12 +169,14 @@ public class Combat
                         continue;
                     Events.CharacterHeals(user, character);
                     character.GetHeal(skill.HealAmount);
+                    targets.Add(character);
                 }
             }
             else
             {
                 Events.CharacterHeals(user, target);
                 target.GetHeal(skill.HealAmount);
+                targets.Add(target);
             }
         }
 
@@ -181,7 +186,9 @@ public class Combat
             if (skill.Effect == EffectType.AllyDefense)
                 effect.SetOwner(user);
             target.AddEffect(effect);
+            targets.Add(target);
         }
+        Events.SkillUsed(user, skill, targets.ToList());
 
         EndTurn();
     }
