@@ -49,6 +49,13 @@ public class Character
 
     public void GetDamage(int damage)
     {
+        var allyDef = _effects.FirstOrDefault(e => e.Type == EffectType.AllyDefense);
+        if (allyDef != null)
+        {
+            allyDef.Owner.GetDamage(damage);
+            return;
+        }
+
         Debug.Log($"Character {Name} gets {damage} damage");
 
         var def = _effects.FirstOrDefault(e => e.Type == EffectType.Defense);

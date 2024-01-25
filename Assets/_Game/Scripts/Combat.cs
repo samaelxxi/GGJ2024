@@ -175,7 +175,10 @@ public class Combat
 
         if (skill.IsAddsEffect)
         { // TODO AOE effects?
-            target.AddEffect(new Effect(skill.Effect, skill.EffectValue, skill.EffectDuration));
+            var effect = new Effect(skill.Effect, skill.EffectValue, skill.EffectDuration);
+            if (skill.Effect == EffectType.AllyDefense)
+                effect.SetOwner(user);
+            target.AddEffect(effect);
         }
 
         EndTurn();
@@ -186,6 +189,8 @@ public class Combat
         if (skill.IsAttack && user.Team == target.Team)
             return false;
         if (skill.IsHeal && user.Team != target.Team)
+            return false;
+        if (skill.IsSelfOnly && user != target)
             return false;
         // if (skill.IsAOE && target != null)
         //     return false;

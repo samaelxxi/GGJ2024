@@ -23,6 +23,8 @@ public class Skill : ScriptableObject
     [field: SerializeField]
     public bool IsAOE { get; private set; }
 
+    [field: SerializeField]
+    public bool IsSelfOnly { get; private set; }
 
     [field: SerializeField]
     public bool IsAddsEffect { get; private set; }

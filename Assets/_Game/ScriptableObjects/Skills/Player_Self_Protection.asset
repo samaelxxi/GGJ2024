@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6297f7ce96a6a084aac788a38fe924a0, type: 3}
   m_Name: Player_Self_Protection
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: SelfDefense
   <IsAttack>k__BackingField: 0
   <Damage>k__BackingField: 0
   <IsHeal>k__BackingField: 0
   <HealAmount>k__BackingField: 4
   <IsAOE>k__BackingField: 0
+  <IsSelfOnly>k__BackingField: 1
   <IsAddsEffect>k__BackingField: 1
-  <EffectValue>k__BackingField: 0
-  <EffectDuration>k__BackingField: 3
+  <Effect>k__BackingField: 5
+  <EffectValue>k__BackingField: 5
+  <EffectDuration>k__BackingField: 2
