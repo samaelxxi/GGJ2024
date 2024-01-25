@@ -114,14 +114,17 @@ public class Character
 
     public void OnTurnStart()
     {
+        var effectsToRemove = new List<Effect>();
+
         foreach (var effect in _effects)
         {
             effect.Duration--;
             if (effect.Duration <= 0)
             {
-                _effects.Remove(effect);
+                effectsToRemove.Add(effect);
                 Game.Instance.Events.CharacterEffectEnd(this, effect);
             }
         }
+        _effects = _effects.Except(effectsToRemove).ToList();
     }
 }
