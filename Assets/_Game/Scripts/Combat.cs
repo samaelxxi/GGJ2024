@@ -137,7 +137,7 @@ public class Combat
         Debug.Log($"Skill usage: {skill.name} by {user.Name} on {target.Name}");
 
 
-        HashSet<Character> targets = new();
+        Events.SkillUsed(user, skill, CollectSkillTargets(user, skill, target));
 
         if (skill.IsAttack)
         {
@@ -149,14 +149,12 @@ public class Combat
                         continue;
                     Events.CharacterAttacks(user, character);
                     character.GetDamage(skill.Damage);
-                    targets.Add(character);
                 }
             }
             else
             {
                 Events.CharacterAttacks(user, target);
                 target.GetDamage(skill.Damage);
-                targets.Add(target);
             }
         }
         else if (skill.IsHeal)
@@ -169,14 +167,12 @@ public class Combat
                         continue;
                     Events.CharacterHeals(user, character);
                     character.GetHeal(skill.HealAmount);
-                    targets.Add(character);
                 }
             }
             else
             {
                 Events.CharacterHeals(user, target);
                 target.GetHeal(skill.HealAmount);
-                targets.Add(target);
             }
         }
 
@@ -186,11 +182,35 @@ public class Combat
             if (skill.Effect == EffectType.AllyDefense)
                 effect.SetOwner(user);
             target.AddEffect(effect);
-            targets.Add(target);
         }
-        Events.SkillUsed(user, skill, targets.ToList());
 
         EndTurn();
+    }
+
+    List<Character> CollectSkillTargets(Character user, Skill skill, Character target)
+    {
+        HashSet<Character> targets = new();
+
+        if (skill.IsAOE)
+        {
+            foreach (var character in _turnOrder)
+            {
+                if ((skill.IsAttack && GetCharacterTeam(character) != GetCharacterTeam(user)) ||
+                    (skill.IsHeal   && GetCharacterTeam(character) == GetCharacterTeam(user)))
+                        targets.Add(character);
+            }
+        }
+        else
+        {
+            targets.Add(target);
+        }
+
+        if (skill.IsAddsEffect)
+        { // TODO AOE effects?
+            targets.Add(target);
+        }
+
+        return targets.ToList();
     }
 
     public bool IsSkillUsageCorrect(Character user, Skill skill, Character target)
