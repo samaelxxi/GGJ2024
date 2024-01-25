@@ -20,10 +20,11 @@ public class UIView : MonoBehaviour
     State _state = State.ChooseTarget;
 
     bool _unprocesedEventsInQUeue = false;
-
+    bool _isProcessingEvents = false;
     Character _targetCharacter;
     CharacterView _activeCharacterView;
     SkillBtn _selectedSkillBtn;
+    
 
     public void SelectSkillBtn(SkillBtn newSkillBtn)
     {
@@ -140,13 +141,15 @@ public class UIView : MonoBehaviour
             }
 
         }
+        _isProcessingEvents = false;
     }
     void DisplayActionUpdate()
     {
-        if (_unprocesedEventsInQUeue)
+        if (_unprocesedEventsInQUeue && ! _isProcessingEvents)
         {
-            StartCoroutine(DisplayActions());
+            _isProcessingEvents = true;
             _unprocesedEventsInQUeue = false;
+            StartCoroutine(DisplayActions());
         }
         //_state = State.WaitForEnemyTurnEnd;
     }
