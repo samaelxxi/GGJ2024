@@ -34,6 +34,8 @@ Transform:
   m_Children:
   - {fileID: 1266800407776155474}
   - {fileID: 6621615838952551570}
+  - {fileID: 3463432931770176934}
+  - {fileID: 8088636063058396307}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4412589498510013193
@@ -49,6 +51,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _body: {fileID: 1266800407776155474}
+  _projectileSpawnPos: {fileID: 3463432931770176934}
+  _projectileHitPos: {fileID: 8088636063058396307}
+  ProjectilePrefab: {fileID: 5333231867608022238, guid: 28c001ed0ed79224a927f91e8336543e, type: 3}
   selectionMarker: {fileID: 7103333784821966681}
   DeathSound: {fileID: 8300000, guid: a0b0cddd37b91e9429dbe26ba49f7472, type: 3}
   InActiveAnimation: 0
@@ -118,6 +123,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7708889, y: 1.105743}
   m_EdgeRadius: 0
+--- !u!1 &885686010515306080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8088636063058396307}
+  m_Layer: 0
+  m_Name: ProjectileHitPos
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8088636063058396307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885686010515306080}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.146, y: 0.549, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8410370333747314549}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2353184002452110035
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,6 +202,37 @@ MonoBehaviour:
   spriteRenderer: {fileID: 6571037390474901143}
   EnemyColor: {r: 0.7264151, g: 0.044544343, b: 0.044544343, a: 1}
   AllyColor: {r: 0.060333442, g: 0.7254902, b: 0.04313725, a: 1}
+--- !u!1 &5641961389637525302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3463432931770176934}
+  m_Layer: 0
+  m_Name: ProjectileSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3463432931770176934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641961389637525302}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.31, y: 0.471, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8410370333747314549}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6195549476261757357
 GameObject:
   m_ObjectHideFlags: 0

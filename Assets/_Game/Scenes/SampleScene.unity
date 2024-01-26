@@ -257,8 +257,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.018750042, y: 0.14245, z: 0}
-    m_Extent: {x: 0.98735, y: 0.85105, z: 0}
+    m_Center: {x: -0.01880002, y: 0.141, z: 0}
+    m_Extent: {x: 0.9871, y: 0.8514, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -522,9 +522,9 @@ MonoBehaviour:
   m_AssetsPPU: 100
   m_RefResolutionX: 480
   m_RefResolutionY: 270
-  m_CropFrame: 0
+  m_CropFrame: 4
   m_GridSnapping: 0
-  m_FilterMode: 0
+  m_FilterMode: 1
   m_UpscaleRT: 0
   m_PixelSnapping: 0
   m_CropFrameX: 0
@@ -770,7 +770,7 @@ MonoBehaviour:
   - {fileID: 327637399}
   - {fileID: 301214844}
   SkillsPanel: {fileID: 807046002}
-  uiCharactersCardsManager: {fileID: 1834602153}
+  UiManager: {fileID: 1834602153}
   _king: {fileID: 623715860}
   DramaticShade: {fileID: 2008378221}
 --- !u!4 &652625414
@@ -1283,6 +1283,8 @@ MonoBehaviour:
   uiCharacterCardPrefab: {fileID: 8145120503281527468, guid: b03e0ef873a31724191c1949ccefb02a, type: 3}
   PlayerTeamContainer: {fileID: 2109368667}
   NPCTeamContainer: {fileID: 775208707}
+  WinScreenPrefab: {fileID: 1857833961881117998, guid: fa958aa6ee667904693f0b5e9d56f082, type: 3}
+  DefeatScreenPrefab: {fileID: 2114589669559620403, guid: 3013501da59bc3d4d821044fdc08709e, type: 3}
 --- !u!1 &1911345249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,5 +1573,5 @@ SceneRoots:
   - {fileID: 120171004}
   - {fileID: 1266288736}
   - {fileID: 1168912985}
-  - {fileID: 623715859}
   - {fileID: 2750381184245286551}
+  - {fileID: 623715859}
