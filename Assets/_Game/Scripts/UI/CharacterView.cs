@@ -53,6 +53,7 @@ public class CharacterView : MonoBehaviour
     public void Init(Character character, UICharacterCard card)
     {
         Character = character;
+        if(Character.Team != 0) _body.localScale = new Vector3(-1, 1, 1);
         _uiCharCard = card;
     }
 
