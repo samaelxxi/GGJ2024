@@ -226,3 +226,6 @@ MonoBehaviour:
   SkillName: {fileID: 6334861674314592431}
   Background: {fileID: 7899796601739298599}
   Skill: {fileID: 0}
+  PointerOn: {fileID: 8300000, guid: 1df4956630afab44a9b21f0a1dc50b54, type: 3}
+  Selected: {fileID: 8300000, guid: 68416ab8b372bde42843828e0daeb58e, type: 3}
+  Deselected: {fileID: 8300000, guid: f457a4d84df7d5a4892c85e20977bda3, type: 3}

@@ -9,9 +9,9 @@ public class UIView : MonoBehaviour
     [SerializeField] CharactersRegistry CharactersRegistry;
     [SerializeField] List<Transform> PlayerTeamSlots;
     [SerializeField] List<Transform> NPCTeamSlots;
-    [SerializeField] ActivCharacterMarker ActiveCaracterMarker;
 
     [SerializeField] SkillsPanel SkillsPanel;
+    [SerializeField] UICharactersCardsManager uiCharactersCardsManager;
 
     [SerializeField] King _king;
     public Image DramaticShade;
@@ -61,17 +61,19 @@ public class UIView : MonoBehaviour
         int i = 0;
         foreach (Character character in _combat._team1)
         {
-            CharacterView newCharacterView = Instantiate(CharactersRegistry.Get(character._data), PlayerTeamSlots[i]).GetComponent<CharacterView>();
-            newCharacterView.Init(character);
+            CharacterView newCharacterView = Instantiate(CharactersRegistry.Get(character._data).prefab, PlayerTeamSlots[i]).GetComponent<CharacterView>();
+            UICharacterCard card = uiCharactersCardsManager.CreateCard(character);
+            
+            newCharacterView.Init(character, card);
             PlayerCharactersViews.Add(newCharacterView);
             i++;
         }
         i = 0;
         foreach (Character character in _combat._team2)
         {
-            CharacterView newCharacterView = Instantiate(CharactersRegistry.Get(character._data), NPCTeamSlots[i]).GetComponent<CharacterView>();
-            //newCharacterView.transform.localScale = new Vector3(1,-1,1);
-            newCharacterView.Init(character);
+            CharacterView newCharacterView = Instantiate(CharactersRegistry.Get(character._data).prefab, NPCTeamSlots[i]).GetComponent<CharacterView>();
+            UICharacterCard card = uiCharactersCardsManager.CreateCard(character);
+            newCharacterView.Init(character,card);
             NPCCharactersViews.Add(newCharacterView);
             i++;
         }
@@ -145,8 +147,9 @@ public class UIView : MonoBehaviour
 
             if (visualEvent is CharacterGetsTurnVE charTurnVE)
             {
+                if(_activeCharacterView) _activeCharacterView.IsSelected = false;
                 _activeCharacterView = charTurnVE.CharacterView;
-                ActiveCaracterMarker.AttachTo(_activeCharacterView);
+                _activeCharacterView.IsSelected = true;
                 if (charTurnVE.CharacterView.Character.Team == 0)
                 {
                     _state = State.ChooseSkill;
@@ -222,7 +225,7 @@ public class UIView : MonoBehaviour
                 //if(_selectedSkillBtn.Skill.IsAOE) _targetCharacter = null;
                 _combat.UseSkill(_activeCharacterView.Character, _selectedSkillBtn.Skill, _targetCharacter);
                 SkillsPanel.Hide();
-                ActiveCaracterMarker.AttachTo(_activeCharacterView);
+                _activeCharacterView.IsSelected = false;
                 _selectedSkillBtn = null;
                 _state = State.DisplayAction;
             }

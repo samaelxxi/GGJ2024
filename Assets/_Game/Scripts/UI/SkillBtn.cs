@@ -11,48 +11,58 @@ public class SkillBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] Image Background;
     [HideInInspector] public Skill Skill;
 
+    [SerializeField] AudioClip PointerOn;
+    [SerializeField] AudioClip Selected;
+    [SerializeField] AudioClip Deselected;
+
 
     bool _isSelected = false;
-    public bool IsSelected {
+    public bool IsSelected
+    {
         get => _isSelected;
-        set {
+        set
+        {
             _isSelected = value;
-            transform.localScale = _isSelected ? new Vector3(1.2f, 1.2f, 1) : Vector3.one;
+            if(_isSelected)
+            {
+                transform.localScale = new Vector3(1.2f, 1.2f, 1);
+                AudioSource.PlayClipAtPoint(Selected, Vector3.zero);
+
+            } else 
+            {
+                transform.localScale =  Vector3.one;
+                AudioSource.PlayClipAtPoint(Deselected, Vector3.zero);
+            }
         }
     }
 
-    public void Init(Skill skill, Sprite backgroundSprite){
+    public void Init(Skill skill, Sprite backgroundSprite)
+    {
         Skill = skill;
         SkillName.text = Skill.name;
         Background.sprite = backgroundSprite;
-        
+
     }
     public void OnPointerClick(PointerEventData eventData)
     {
         Game.Instance.UIView.SelectSkillBtn(this);
-        transform.localScale = new Vector3(1.2f, 1.2f, 1);
         IsSelected = true;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(!IsSelected) transform.localScale = new Vector3(1.1f, 1.1f, 1);
+        if (!IsSelected)
+        {
+            transform.localScale = new Vector3(1.1f, 1.1f, 1);
+            AudioSource.PlayClipAtPoint(PointerOn, Vector3.zero);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if(!IsSelected) transform.localScale = Vector3.one;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (!IsSelected)
+        {
+            transform.localScale = Vector3.one;
+        }
     }
 }
