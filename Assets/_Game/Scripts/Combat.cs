@@ -22,7 +22,7 @@ public class Combat
         {
             _team1[i] = new Character(data.Team1[i], 0);
             _team1[i].InitAI(this);  // TODO comment
-            _team1[i].Name = $"Team1_{i}";
+            _team1[i].Name = $"{_team1[i]._data.name}";
         }
 
         _team2 = new Character[data.Team2.Count];
@@ -30,7 +30,7 @@ public class Combat
         {
             _team2[i] = new Character(data.Team2[i], 1);
             _team2[i].InitAI(this);
-            _team2[i].Name = $"Team2_{i}";
+            _team2[i].Name = $"{_team1[i]._data.name}";
         }
 
         _turnOrder.AddRange(_team1);
@@ -88,6 +88,14 @@ public class Combat
 
     void StartNewTurn()
     {
+        string debug = "";
+        foreach (var character in _team1)
+            debug += $"{character.Name}({character.Health}) ";
+        debug += " | ";
+        foreach (var character in _team2)
+            debug += $"{character.Name}({character.Health}) ";
+        Debug.Log(debug);
+
         _turnOrder[0].OnTurnStart();
         Events.CharacterGetsTurn(_turnOrder[0]);
     }

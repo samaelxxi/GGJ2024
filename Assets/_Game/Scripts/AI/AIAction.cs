@@ -32,13 +32,13 @@ public abstract class AIAction
         float compensationFactor = 1.0f - (1.0f / _considerations.Count);
 
         debugStr = "";
-        debugStr += $"{_context.User.Name} {_context.Skill} {_context.Target.Name}\n";
+        debugStr += $"{_context.User.Name} {_context.Skill.Name} {_context.Target.Name}\n";
 
         foreach (var consideration in _considerations)
         {
             float considerationScore = consideration.Score(combat, _context);
 
-            debugStr += $"\t {consideration.GetType().Name}: {considerationScore}\n";
+            debugStr += $"\t {consideration.GetType().Name}: {consideration.RawScore(combat, _context)} => {considerationScore}\n";
 
             if (considerationScore == 0)
                 return 0;

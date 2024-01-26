@@ -7,7 +7,7 @@ using UnityEngine;
 public enum ConsiderationType
 {
     Random, Damage, Heal, Kill, TargetHPPercentage,
-    IsAllyDefended, HasDefense
+    IsAllyDefended, HasDefense, TotalHealth
 }
 
 public static class ConsiderationFactory
@@ -30,6 +30,8 @@ public static class ConsiderationFactory
                 return new ConsiderationIsAllyDefended();
             case ConsiderationType.HasDefense:
                 return new ConsiderationHasDefense();
+            case ConsiderationType.TotalHealth:
+                return new ConsiderationTargetTotalHealth();
             default:
                 return null;
         }
@@ -46,21 +48,27 @@ public abstract class Consideration
         _responseCurve = curve;
     }
 
+    public abstract float RawScore(Combat combat, AIContext context);
     public abstract float Score(Combat combat, AIContext context);
 }
 
 
 public class ConsiderationRandom : Consideration
 {
-    public override float Score(Combat combat, AIContext context)
+    public override float RawScore(Combat combat, AIContext context)
     {
         return Random.Range(0f, 1f);
+    }
+
+    public override float Score(Combat combat, AIContext context)
+    {
+        return RawScore(combat, context);
     }
 }
 
 public class ConsiderationDamage : Consideration
 {
-    public override float Score(Combat combat, AIContext context)
+    public override float RawScore(Combat combat, AIContext context)
     {
         if (!context.Skill.IsAttack)
             return 0;
@@ -73,19 +81,24 @@ public class ConsiderationDamage : Consideration
                 var damage = context.Skill.CalculateDamage(context.User, target);
                 totalDamage += damage;
             }
-            return _responseCurve.ComputeValue(totalDamage);
+            return totalDamage;
         }
         else
         {
             var damage = context.Skill.CalculateDamage(context.User, context.Target);
-            return _responseCurve.ComputeValue(damage);
+            return damage;
         }
+    }
+
+    public override float Score(Combat combat, AIContext context)
+    {
+        return _responseCurve.ComputeValue(RawScore(combat, context));
     }
 }
 
 public class ConsiderationHeal : Consideration
 {
-    public override float Score(Combat combat, AIContext context)
+    public override float RawScore(Combat combat, AIContext context)
     {
         if (!context.Skill.IsHeal)
             return 0;
@@ -98,19 +111,24 @@ public class ConsiderationHeal : Consideration
                 var heal = context.Skill.CalculateHeal(context.User, target);
                 totalHeal += heal;
             }
-            return _responseCurve.ComputeValue(totalHeal);
+            return totalHeal;
         }
         else
         {
             var heal = context.Skill.CalculateHeal(context.User, context.Target);
-            return _responseCurve.ComputeValue(heal);
+            return heal;
         }
+    }
+
+    public override float Score(Combat combat, AIContext context)
+    {
+        return _responseCurve.ComputeValue(RawScore(combat, context));
     }
 }
 
 public class ConsiderationKill : Consideration
 {
-    public override float Score(Combat combat, AIContext context)
+    public override float RawScore(Combat combat, AIContext context)
     {
         if (!context.Skill.IsAttack)
             return 0;
@@ -134,13 +152,18 @@ public class ConsiderationKill : Consideration
             if (context.Skill.Damage >= target.Health + target.GetDefense())
                 killed++;
         }
-        return _responseCurve.ComputeValue(killed);
+        return killed;
+    }
+
+    public override float Score(Combat combat, AIContext context)
+    {
+        return _responseCurve.ComputeValue(RawScore(combat, context));
     }
 }
 
 public class ConsiderationTargetHPPercentage : Consideration
 {
-    public override float Score(Combat combat, AIContext context)
+    public override float RawScore(Combat combat, AIContext context)
     {
         if (context.Skill.IsAOE)
         {
@@ -151,30 +174,59 @@ public class ConsiderationTargetHPPercentage : Consideration
                 totalHP += target.Health;
                 totalMaxHP += target.MaxHealth;
             }
-            return _responseCurve.ComputeValue(totalHP / totalMaxHP);
+            return totalHP / (float)totalMaxHP;
         }
         else
         {
-            return _responseCurve.ComputeValue(context.Target.Health / context.Target.MaxHealth);
+            return context.Target.Health / (float)context.Target.MaxHealth;
         }
+    }
+
+    public override float Score(Combat combat, AIContext context)
+    {
+        return _responseCurve.ComputeValue(RawScore(combat, context));
     }
 }
 
 public class ConsiderationIsAllyDefended : Consideration
 {
-    public override float Score(Combat combat, AIContext context)
+    public override float RawScore(Combat combat, AIContext context)
     {
         if (context.Target.DoesHaveEffect(EffectType.AllyDefense))
-            return _responseCurve.ComputeValue(1);
+            return 1;
         else
-            return _responseCurve.ComputeValue(0);
+            return 0;
+    }
+
+    public override float Score(Combat combat, AIContext context)
+    {
+        return _responseCurve.ComputeValue(RawScore(combat, context));
     }
 }
 
 public class ConsiderationHasDefense : Consideration
 {
+    public override float RawScore(Combat combat, AIContext context)
+    {
+        return context.Target.GetDefense();
+    }
+
     public override float Score(Combat combat, AIContext context)
     {
-        return _responseCurve.ComputeValue(context.Target.GetDefense());
+        return _responseCurve.ComputeValue(RawScore(combat, context));
+    }
+}
+
+
+public class ConsiderationTargetTotalHealth : Consideration
+{
+    public override float RawScore(Combat combat, AIContext context)
+    {
+        return context.Target.Health;
+    }
+
+    public override float Score(Combat combat, AIContext context)
+    {
+        return _responseCurve.ComputeValue(RawScore(combat, context));
     }
 }
