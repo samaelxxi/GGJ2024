@@ -9,7 +9,6 @@ public class UIView : MonoBehaviour
     [SerializeField] CharactersRegistry CharactersRegistry;
     [SerializeField] List<Transform> PlayerTeamSlots;
     [SerializeField] List<Transform> NPCTeamSlots;
-    [SerializeField] ActivCharacterMarker ActiveCaracterMarker;
 
     [SerializeField] SkillsPanel SkillsPanel;
 
@@ -145,8 +144,9 @@ public class UIView : MonoBehaviour
 
             if (visualEvent is CharacterGetsTurnVE charTurnVE)
             {
+                if(_activeCharacterView) _activeCharacterView.IsSelected = false;
                 _activeCharacterView = charTurnVE.CharacterView;
-                ActiveCaracterMarker.AttachTo(_activeCharacterView);
+                _activeCharacterView.IsSelected = true;
                 if (charTurnVE.CharacterView.Character.Team == 0)
                 {
                     _state = State.ChooseSkill;
@@ -222,7 +222,7 @@ public class UIView : MonoBehaviour
                 //if(_selectedSkillBtn.Skill.IsAOE) _targetCharacter = null;
                 _combat.UseSkill(_activeCharacterView.Character, _selectedSkillBtn.Skill, _targetCharacter);
                 SkillsPanel.Hide();
-                ActiveCaracterMarker.AttachTo(_activeCharacterView);
+                _activeCharacterView.IsSelected = false;
                 _selectedSkillBtn = null;
                 _state = State.DisplayAction;
             }
