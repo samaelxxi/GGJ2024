@@ -2,9 +2,27 @@ using System;
 using UnityEngine;
 
 
+[Serializable]
 public abstract class Response
 {
     public abstract float ComputeValue(float x);
+
+    protected float Sanitize(float y)
+    {
+        if (float.IsInfinity(y))
+            return 0.0f;
+
+        if (float.IsNaN(y))
+            return 0.0f;
+
+        if (y < 0.0)
+            return 0.0f;
+
+        if (y > 1.0)
+            return 1.0f;
+
+        return y;
+    }
 }
 
 public class ResponseCurve : Response
@@ -81,22 +99,20 @@ public class ResponseCurve : Response
             _ => 0.0f,
         };
     }
+}
 
-    float Sanitize(float y)
+public class AnimationCurveResponse : Response
+{
+    AnimationCurve _curve;
+
+    public AnimationCurveResponse(AnimationCurve curve)
     {
-        if (float.IsInfinity(y))
-            return 0.0f;
+        _curve = curve;
+    }
 
-        if (float.IsNaN(y))
-            return 0.0f;
-
-        if (y < 0.0)
-            return 0.0f;
-
-        if (y > 1.0)
-            return 1.0f;
-
-        return y;
+    public override float ComputeValue(float x)
+    {
+        return Sanitize(_curve.Evaluate(x));
     }
 }
 

@@ -14,31 +14,45 @@ public class SkillAction : AIAction
 
     public override IEnumerable<AIAction> GenerateConcreteActions(Combat combat)
     {
-        // Debug.Log($"{Skill}");
-        if (Skill.IsAOE)
+        if (Skill.Target == SkillTarget.Self)
         {
             var action = new SkillAction(this, new AIContext
             {
                 User = User,
                 Skill = Skill,
-                Target = Skill.IsAttack ? combat.GetAnyEnemy(User) : combat.GetAnyFriend(User)
+                Target = User
             });
             yield return action;
         }
-        else if (Skill.IsAttack)
+        else if (Skill.Target == SkillTarget.Enemy)
         {
-                foreach (var target in combat.GetEnemies(User))
+            foreach (var target in combat.GetEnemies(User))
+            {
+                var action = new SkillAction(this, new AIContext
                 {
-                    var action = new SkillAction(this, new AIContext
-                    {
-                        User = User,
-                        Skill = Skill,
-                        Target = target
-                    });
-                    yield return action;
-                }
+                    User = User,
+                    Skill = Skill,
+                    Target = target
+                });
+                yield return action;
+            }
         }
-        else if (Skill.IsHeal)
+        else if (Skill.Target == SkillTarget.Ally)
+        {
+            foreach (var target in combat.GetFriends(User))
+            {
+                if (target == User)
+                    continue;
+                var action = new SkillAction(this, new AIContext
+                {
+                    User = User,
+                    Skill = Skill,
+                    Target = target
+                });
+                yield return action;
+            }
+        }
+        else if (Skill.Target == SkillTarget.MyTeam)
         {
             foreach (var target in combat.GetFriends(User))
             {

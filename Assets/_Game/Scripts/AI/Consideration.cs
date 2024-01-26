@@ -4,7 +4,39 @@ using UnityEngine;
 
 
 
-[System.Serializable]
+public enum ConsiderationType
+{
+    Random, Damage, Heal, Kill, TargetHPPercentage,
+    IsAllyDefended, HasDefense
+}
+
+public static class ConsiderationFactory
+{
+    public static Consideration Create(ConsiderationType type)
+    {
+        switch (type)
+        {
+            case ConsiderationType.Random:
+                return new ConsiderationRandom();
+            case ConsiderationType.Damage:
+                return new ConsiderationDamage();
+            case ConsiderationType.Heal:
+                return new ConsiderationHeal();
+            case ConsiderationType.Kill:
+                return new ConsiderationKill();
+            case ConsiderationType.TargetHPPercentage:
+                return new ConsiderationTargetHPPercentage();
+            case ConsiderationType.IsAllyDefended:
+                return new ConsiderationIsAllyDefended();
+            case ConsiderationType.HasDefense:
+                return new ConsiderationHasDefense();
+            default:
+                return null;
+        }
+    }
+}
+
+
 public abstract class Consideration
 {
     protected Response _responseCurve;
@@ -88,13 +120,18 @@ public class ConsiderationKill : Consideration
         {
             foreach (var target in combat.GetEnemies(context.User))
             {
-                if (context.Skill.Damage >= target.Health)
+                if ((context.Skill.Damage >= target.Health + target.GetDefense())
+                    && !target.DoesHaveEffect(EffectType.AllyDefense))
                     killed++;
             }
         }
         else
         {
-            if (context.Skill.Damage >= context.Target.Health)
+            var target = context.Target;
+            if (context.Target.DoesHaveEffect(EffectType.AllyDefense))
+                target = target.GetEffectOwner(EffectType.AllyDefense);
+
+            if (context.Skill.Damage >= target.Health + target.GetDefense())
                 killed++;
         }
         return _responseCurve.ComputeValue(killed);
@@ -120,5 +157,24 @@ public class ConsiderationTargetHPPercentage : Consideration
         {
             return _responseCurve.ComputeValue(context.Target.Health / context.Target.MaxHealth);
         }
+    }
+}
+
+public class ConsiderationIsAllyDefended : Consideration
+{
+    public override float Score(Combat combat, AIContext context)
+    {
+        if (context.Target.DoesHaveEffect(EffectType.AllyDefense))
+            return _responseCurve.ComputeValue(1);
+        else
+            return _responseCurve.ComputeValue(0);
+    }
+}
+
+public class ConsiderationHasDefense : Consideration
+{
+    public override float Score(Combat combat, AIContext context)
+    {
+        return _responseCurve.ComputeValue(context.Target.GetDefense());
     }
 }

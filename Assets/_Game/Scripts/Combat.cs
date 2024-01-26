@@ -41,14 +41,6 @@ public class Combat
     public int GetCharacterTeam(Character character)
     {
         return character.Team;
-
-        if (_team1.Contains(character))
-            return 0;
-        else if (_team2.Contains(character))
-            return 1;
-        else
-            Debug.LogError($"Character {character.Name} not found in any team");
-        return -1;
     }
 
     public void StartCombat()
@@ -215,12 +207,16 @@ public class Combat
 
     public bool IsSkillUsageCorrect(Character user, Skill skill, Character target)
     {
-        if (skill.IsAttack && user.Team == target.Team)
+        if (skill.Target == SkillTarget.Enemy && user.Team == target.Team)
             return false;
-        if (skill.IsHeal && user.Team != target.Team)
+        if (skill.Target == SkillTarget.MyTeam && user.Team != target.Team)
             return false;
-        if (skill.IsSelfOnly && user != target)
+        if (skill.Target == SkillTarget.Ally && (user.Team != target.Team || user == target))
             return false;
+        if (skill.Target == SkillTarget.Self && user != target)
+            return false;
+        // if (skill.IsSelfOnly && user != target)
+        //     return false;
         // if (skill.IsAOE && target != null)
         //     return false;
         return true; 

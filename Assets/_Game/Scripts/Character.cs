@@ -47,6 +47,27 @@ public class Character
         return _aiBrain.ChooseBestAction();
     }
 
+    public bool DoesHaveEffect(EffectType type)
+    {
+        return _effects.Any(e => e.Type == type);
+    }
+
+    public Character GetEffectOwner(EffectType type)
+    {
+        var effect = _effects.FirstOrDefault(e => e.Type == type);
+        if (effect != null)
+            return effect.Owner;
+        return null;
+    }
+
+    public int GetDefense()
+    {
+        var def = _effects.FirstOrDefault(e => e.Type == EffectType.Defense);
+        if (def != null)
+            return def.Amount;
+        return 0;
+    }
+
     public void GetDamage(int damage)
     {
         var allyDef = _effects.FirstOrDefault(e => e.Type == EffectType.AllyDefense);

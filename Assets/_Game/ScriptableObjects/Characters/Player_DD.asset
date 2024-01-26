@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a61c70788d1b3c4dae414c793a35b46, type: 3}
   m_Name: Player_DD
   m_EditorClassIdentifier: 
-  <TotalHealth>k__BackingField: 10
-  <Initiative>k__BackingField: 0
+  <TotalHealth>k__BackingField: 80
+  <Initiative>k__BackingField: 10
   <Skills>k__BackingField:
   - {fileID: 11400000, guid: 3cfccefb9c713ab46873e9c3b77f3ffa, type: 2}
-  - {fileID: 11400000, guid: be045e195c36d654db559e34ec973351, type: 2}
+  - {fileID: 11400000, guid: 2e6395a3b4b10f742a08bb58abe0eb18, type: 2}

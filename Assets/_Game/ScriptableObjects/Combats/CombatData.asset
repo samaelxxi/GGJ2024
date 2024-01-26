@@ -16,4 +16,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8c33e3c1d784c034189a4438f8a3a3d5, type: 2}
   - {fileID: 11400000, guid: 039c90ad77b238d4291f3f496fd958ad, type: 2}
   - {fileID: 11400000, guid: 38c7068af1b52974db236f17a0a6d110, type: 2}
-  <Team2>k__BackingField: []
+  <Team2>k__BackingField:
+  - {fileID: 11400000, guid: d5cf4a64ef030ad48b0b4b2537703f98, type: 2}
+  - {fileID: 11400000, guid: 30d0e6fa48ddf4943a7c7ea403323154, type: 2}
+  - {fileID: 11400000, guid: 0c83809575b83c64faabde6fd7782556, type: 2}
