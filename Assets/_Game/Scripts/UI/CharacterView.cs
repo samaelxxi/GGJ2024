@@ -5,6 +5,11 @@ public class CharacterView : MonoBehaviour
 {
     UICharacterCard _uiCharCard;
     [SerializeField] Transform _body;
+    [SerializeField] Transform _projectileSpawnPos;
+    [SerializeField] Transform _projectileHitPos;
+
+    [SerializeField] Projectile ProjectilePrefab;
+
     [SerializeField] SelectionMarker selectionMarker;
 
     [SerializeField] AudioClip DeathSound;
@@ -13,6 +18,7 @@ public class CharacterView : MonoBehaviour
 
     Animator _animator;
 
+    [HideInInspector] 
     public bool InActiveAnimation = false;
 
     bool _isHighlighted = false;

@@ -11,7 +11,7 @@ public class UIView : MonoBehaviour
     [SerializeField] List<Transform> NPCTeamSlots;
 
     [SerializeField] SkillsPanel SkillsPanel;
-    [SerializeField] UICharactersCardsManager uiCharactersCardsManager;
+    public UIManager UiManager;
 
     [SerializeField] King _king;
     public Image DramaticShade;
@@ -62,7 +62,7 @@ public class UIView : MonoBehaviour
         foreach (Character character in _combat._team1)
         {
             CharacterView newCharacterView = Instantiate(CharactersRegistry.Get(character._data).prefab, PlayerTeamSlots[i]).GetComponent<CharacterView>();
-            UICharacterCard card = uiCharactersCardsManager.CreateCard(character);
+            UICharacterCard card = UiManager.CreateCard(character);
             
             newCharacterView.Init(character, card);
             PlayerCharactersViews.Add(newCharacterView);
@@ -72,7 +72,7 @@ public class UIView : MonoBehaviour
         foreach (Character character in _combat._team2)
         {
             CharacterView newCharacterView = Instantiate(CharactersRegistry.Get(character._data).prefab, NPCTeamSlots[i]).GetComponent<CharacterView>();
-            UICharacterCard card = uiCharactersCardsManager.CreateCard(character);
+            UICharacterCard card = UiManager.CreateCard(character);
             newCharacterView.Init(character,card);
             NPCCharactersViews.Add(newCharacterView);
             i++;
@@ -91,6 +91,7 @@ public class UIView : MonoBehaviour
     
         Game.Instance.Events.OnSkillUsed += (Character user, Skill skill, List<Character> targets) => AddVisualEvent(new CharacterUsesSkillVE(user, skill, targets));
 
+        Game.Instance.Events.OnCombatEnd += (int teamId) => AddVisualEvent(new CombatEndVE(teamId));
     }
 
     void AddVisualEvent(VisualEvent newVisualEvent)

@@ -8,17 +8,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1841077148961241653, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.048
+      objectReference: {fileID: 0}
+    - target: {fileID: 1841077148961241653, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.587
+      objectReference: {fileID: 0}
     - target: {fileID: 2941767684646531571, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
       propertyPath: m_Name
       value: Tank
       objectReference: {fileID: 0}
     - target: {fileID: 4037706095214475457, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037706095214475457, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.328
+      value: -0.001
       objectReference: {fileID: 0}
     - target: {fileID: 4037706095214475457, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.486
+      value: 0.016
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475296291971918592, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475296291971918592, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.662
       objectReference: {fileID: 0}
     - target: {fileID: 6713713989405937894, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -80,6 +100,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: e00777e9958e17649a2ce645ebd7341e, type: 2}
+    - target: {fileID: 8548001455548444215, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8548001455548444215, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
       propertyPath: m_Sprite
       value: 

@@ -24,7 +24,7 @@ public class Registry<Key, Value> : ScriptableObject
 
         if(!RegistryDictionary.ContainsKey(key))
         {
-            Debug.LogWarning($"No entry found for {key}");
+            //Debug.LogWarning($"No entry found for {key}");
             return Default;
         }
         return RegistryDictionary[key];
