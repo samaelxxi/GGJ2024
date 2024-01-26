@@ -4,6 +4,14 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "CharactersRegistry", menuName = "CharactersRegistry", order = 1)]
 
-public class CharactersRegistry : Registry<CharacterData, GameObject>
+[Serializable]
+public class CharViewData
 {
+    public GameObject prefab;
+    public Sprite UIIcon;
+}
+
+public class CharactersRegistry : Registry<CharacterData, CharViewData>
+{
+
 }

@@ -11,6 +11,7 @@ public class UIView : MonoBehaviour
     [SerializeField] List<Transform> NPCTeamSlots;
 
     [SerializeField] SkillsPanel SkillsPanel;
+    [SerializeField] UICharactersCardsManager uiCharactersCardsManager;
 
     [SerializeField] King _king;
     public Image DramaticShade;
@@ -60,17 +61,19 @@ public class UIView : MonoBehaviour
         int i = 0;
         foreach (Character character in _combat._team1)
         {
-            CharacterView newCharacterView = Instantiate(CharactersRegistry.Get(character._data), PlayerTeamSlots[i]).GetComponent<CharacterView>();
-            newCharacterView.Init(character);
+            CharacterView newCharacterView = Instantiate(CharactersRegistry.Get(character._data).prefab, PlayerTeamSlots[i]).GetComponent<CharacterView>();
+            UICharacterCard card = uiCharactersCardsManager.CreateCard(character);
+            
+            newCharacterView.Init(character, card);
             PlayerCharactersViews.Add(newCharacterView);
             i++;
         }
         i = 0;
         foreach (Character character in _combat._team2)
         {
-            CharacterView newCharacterView = Instantiate(CharactersRegistry.Get(character._data), NPCTeamSlots[i]).GetComponent<CharacterView>();
-            //newCharacterView.transform.localScale = new Vector3(1,-1,1);
-            newCharacterView.Init(character);
+            CharacterView newCharacterView = Instantiate(CharactersRegistry.Get(character._data).prefab, NPCTeamSlots[i]).GetComponent<CharacterView>();
+            UICharacterCard card = uiCharactersCardsManager.CreateCard(character);
+            newCharacterView.Init(character,card);
             NPCCharactersViews.Add(newCharacterView);
             i++;
         }

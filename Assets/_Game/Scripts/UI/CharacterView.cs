@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class CharacterView : MonoBehaviour
 {
-    [SerializeField] SpriteHealthbar Healthbar;
+    UICharacterCard _uiCharCard;
     [SerializeField] Transform _body;
     [SerializeField] SelectionMarker selectionMarker;
+
+    [SerializeField] AudioClip DeathSound;
 
     public Character Character { get; set; }
 
@@ -28,7 +30,7 @@ public class CharacterView : MonoBehaviour
     // Start is called before the first frame update
     public void UpdateStatus()
     {
-        Healthbar.SetValue((float)Character.Health / Character._data.TotalHealth);
+        _uiCharCard.SetHealthValue((float)Character.Health / Character._data.TotalHealth);
     }
     void Start()
     {
@@ -48,10 +50,10 @@ public class CharacterView : MonoBehaviour
     }
 
 
-    public void Init(Character character)
+    public void Init(Character character, UICharacterCard card)
     {
         Character = character;
-        // set sprite and other stuff
+        _uiCharCard = card;
     }
 
     public void Highlight()
@@ -82,8 +84,10 @@ public class CharacterView : MonoBehaviour
 
     public void DisplayDeath()
     {
-        Destroy(Healthbar.gameObject);
-        _body.GetComponent<Collider2D>().enabled = false;
+        Destroy(_uiCharCard.gameObject);
+        AudioSource.PlayClipAtPoint(DeathSound, Vector3.zero);
+        GetComponent<Collider2D>().enabled = false;
+        selectionMarker.SetVisible(false);
         _animator.SetTrigger("Die");
         InActiveAnimation = true;
     }
