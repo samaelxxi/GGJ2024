@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -27,7 +28,20 @@ public class CharacterUsesSkillVE : VisualEvent
     {
         
         DramatickLightOn();
-        _user.DisplayeSkill(_skill);
+        Action animCallback = null;
+        var effect = Game.Instance.UIView.SkillsViewRegistry.Get(_skill).TargetEffect;
+        if(effect)
+        {
+            animCallback = () => 
+            {
+                foreach(CharacterView target in _targets)
+                {
+                    UnityEngine.Object.Instantiate(effect, target.ProjectileHit);
+                };
+            };
+        }
+
+        _user.DisplayeSkill(_skill, animCallback);
         yield return new WaitForSeconds(0.3f);
         foreach(var attachedEvent in _attachedEvents)
         {

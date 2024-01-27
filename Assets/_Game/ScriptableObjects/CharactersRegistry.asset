@@ -27,15 +27,15 @@ MonoBehaviour:
       UIIcon: {fileID: 2106910348, guid: b6c24180c388b804cb2c694fa2fc3a5b, type: 3}
   - Key: {fileID: 11400000, guid: d5cf4a64ef030ad48b0b4b2537703f98, type: 2}
     Value:
-      prefab: {fileID: 2941767684646531571, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
+      prefab: {fileID: 8636726432504438426, guid: 482883cca9980564fbd6d69e48af83a6, type: 3}
       UIIcon: {fileID: -1719616127, guid: 9602c4a505b3351489f8ca14ca07e912, type: 3}
   - Key: {fileID: 11400000, guid: 30d0e6fa48ddf4943a7c7ea403323154, type: 2}
     Value:
-      prefab: {fileID: 7498921817294600535, guid: 19fe0187ac7fcea46a8dbf290d032659, type: 3}
+      prefab: {fileID: 8955032270177585185, guid: 3763c0ca29e5c1b4f9d4fee8a52cec62, type: 3}
       UIIcon: {fileID: 2006117153, guid: b6c24180c388b804cb2c694fa2fc3a5b, type: 3}
   - Key: {fileID: 11400000, guid: 0c83809575b83c64faabde6fd7782556, type: 2}
     Value:
-      prefab: {fileID: 1291914878987984057, guid: c1d0324ba21fd7c43b9fb76c496581e9, type: 3}
+      prefab: {fileID: 752450785751953470, guid: c206bf6736b25cc4bb68d619e3d46ea6, type: 3}
       UIIcon: {fileID: 2008608765, guid: e537558e40def8a46a2e6c50387a180e, type: 3}
   Default:
     prefab: {fileID: 94300783615745632, guid: bd77c6ba4a9ed574dacc6794da3e6d33, type: 3}

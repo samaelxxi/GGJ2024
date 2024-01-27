@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -6,7 +8,7 @@ public class CharacterView : MonoBehaviour
     UICharacterCard _uiCharCard;
     [SerializeField] Transform _body;
     [SerializeField] Transform _projectileSpawnPos;
-    [SerializeField] Transform _projectileHitPos;
+    public Transform ProjectileHit;
 
     [SerializeField] Projectile ProjectilePrefab;
 
@@ -69,8 +71,10 @@ public class CharacterView : MonoBehaviour
         selectionMarker.SetType(Character.Team == 0 ? SelectionMarker.Type.Ally : SelectionMarker.Type.Enemy);
     }
 
-    public virtual void DisplayeSkill(Skill skill)
+    Action _animationEventCallback;
+    public virtual void DisplayeSkill(Skill skill, Action animationEventCallback)
     {
+        _animationEventCallback = animationEventCallback;
         if (skill.IsAddsEffect)
         {
             _animator.SetTrigger("SpecialAction1");
@@ -98,5 +102,16 @@ public class CharacterView : MonoBehaviour
         _animator.SetTrigger("Die");
         InActiveAnimation = true;
     }
+
+    public void InvokeAnimCallback() => _animationEventCallback?.Invoke();
+
+    // public void Shoot()
+    // {
+    //     foreach (CharacterView target in _targetsForDisplaingSkill)
+    //     {
+    //         Projectile projectile = Instantiate(ProjectilePrefab, _projectileSpawnPos.position, Quaternion.identity);
+    //         projectile.Init(target.ProjectileHit.position);
+    //     }
+    // }
 
 }

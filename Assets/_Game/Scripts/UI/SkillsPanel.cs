@@ -12,7 +12,7 @@ public class SkillsPanel : MonoBehaviour
         foreach(Skill skill in skills)
         {
             SkillBtn newBtn = Instantiate(SkillBtnPrefab, transform);
-            newBtn.Init(skill, SkillSpritesRegistry.GetSprite(skill));
+            newBtn.Init(skill, SkillSpritesRegistry.Get(skill).CardSprite);
         }
     }
 
@@ -23,15 +23,4 @@ public class SkillsPanel : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

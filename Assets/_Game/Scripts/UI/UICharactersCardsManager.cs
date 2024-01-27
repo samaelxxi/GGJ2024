@@ -9,9 +9,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] Transform PlayerTeamContainer;
     [SerializeField] Transform NPCTeamContainer;
 
+    [SerializeField] GameObject StartMenu;
+
     [SerializeField] GameObject WinScreenPrefab;
     [SerializeField] GameObject DefeatScreenPrefab;
 
+    public void HideStartMenu()
+    {
+        StartMenu.SetActive(false);
+    }
     public void DisplayCombatEnd(bool isPeremoga)
     {
         GameObject prefab = isPeremoga ? WinScreenPrefab : DefeatScreenPrefab;

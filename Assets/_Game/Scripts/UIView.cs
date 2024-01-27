@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class UIView : MonoBehaviour
 {
-    [SerializeField] CharactersRegistry CharactersRegistry;
+    public CharactersRegistry CharactersRegistry;
+    public SkillsViewRegistry SkillsViewRegistry;
+
     [SerializeField] List<Transform> PlayerTeamSlots;
     [SerializeField] List<Transform> NPCTeamSlots;
 
@@ -41,19 +43,18 @@ public class UIView : MonoBehaviour
         _selectedSkillBtn = newSkillBtn;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     public void Init(Combat combat)
     {
         _combat = combat;
-        // Create characters
+        _state = State.DisplayAction;
+    }
+
+    public void StartDisplaingCombat()
+    {
         CreateCharacters();
         SubscribeToEvents();
-        _state = State.DisplayAction;
+        Game.Instance.StartCombat();
+        UiManager.HideStartMenu();
     }
 
     void CreateCharacters()
