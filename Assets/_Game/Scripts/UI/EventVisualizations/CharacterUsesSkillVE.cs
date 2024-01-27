@@ -18,7 +18,7 @@ public class CharacterUsesSkillVE : VisualEvent
     {
         _user = Game.Instance.UIView.GetViewByCharacter(user);
         _targets = new List<CharacterView>(targets.Count);
-        foreach(var t in targets)
+        foreach (var t in targets)
         {
             _targets.Add(Game.Instance.UIView.GetViewByCharacter(t));
         }
@@ -26,67 +26,69 @@ public class CharacterUsesSkillVE : VisualEvent
     }
     public override IEnumerator Display()
     {
-        
-        DramatickLightOn();
+
+        SetDramatickLight(true);
+        yield return new WaitForSeconds(0.3f);
         Action animCallback = null;
         var effect = Game.Instance.UIView.SkillsViewRegistry.Get(_skill).TargetEffect;
-        if(effect)
+        if (effect)
         {
-            animCallback = () => 
+            animCallback = () =>
             {
-                foreach(CharacterView target in _targets)
+                foreach (CharacterView target in _targets)
                 {
-                    UnityEngine.Object.Instantiate(effect, target.ProjectileHit);
+                    if (target.Character.DoesHaveEffect(EffectType.AllyDefense))
+                    {
+                        UnityEngine.Object.Instantiate(effect, Game.Instance.UIView.GetViewByCharacter(target.Character.GetEffectOwner(EffectType.AllyDefense)).ProjectileHit);
+                    }
+                    else UnityEngine.Object.Instantiate(effect, target.ProjectileHit);
                 };
             };
         }
 
         _user.DisplayeSkill(_skill, animCallback);
         yield return new WaitForSeconds(0.3f);
-        foreach(var attachedEvent in _attachedEvents)
+        foreach (var attachedEvent in _attachedEvents)
         {
             CourutineOvner.StartCoroutine(attachedEvent.Display());
         }
         yield return new WaitForSeconds(0.7f);
 
-        while(_user.InActiveAnimation){
+        while (_user.InActiveAnimation)
+        {
             yield return null; // skip frame
         }
-        DramatickLightOff();
-        
+        SetDramatickLight(false);
+
     }
 
-    void DramatickLightOn(){
-        Game.Instance.UIView.DramaticShade.enabled = true;
-        _user.transform.localPosition = new Vector3(0,0, -1);
-        foreach(var cv in _targets)
-        {
-            cv.transform.localPosition = new Vector3(0,0, -1);
-        }
-    }
-
-    void DramatickLightOff()
+    void SetDramatickLight(bool isLightOn)
     {
-        _user.transform.localPosition = Vector3.zero;
-         foreach(var cv in _targets)
+        Vector3 charsPos = isLightOn ? new Vector3(0, 0, -1) : Vector3.zero;
+        Game.Instance.UIView.DramaticShade.enabled = isLightOn;
+        _user.transform.localPosition = charsPos;
+        foreach (var cv in _targets)
         {
-            cv.transform.localPosition = Vector3.zero;
-        }
-        Game.Instance.UIView.DramaticShade.enabled = false;
-    }
-    
-        public bool AttachVisualEvent(VisualEvent attachedEvent)
-        {
-            if((_skill.IsAttack && attachedEvent is CharacterDamagedVisualEvent) || (_skill.IsHeal && attachedEvent is CharacterHealedVE)
-                /** || (_skill.IsAddsEffect && attachedEvent ) **/
-                )
+            cv.transform.localPosition = charsPos;
+            if (cv.Character.DoesHaveEffect(EffectType.AllyDefense))
             {
-                _attachedEvents.Add(attachedEvent);
-                return true;
-            } 
-            return false;
-
+                Game.Instance.UIView.GetViewByCharacter(cv.Character.GetEffectOwner(EffectType.AllyDefense)).transform.localPosition = charsPos;
+            }
         }
+    }
 
- 
+    public bool AttachVisualEvent(VisualEvent attachedEvent)
+    {
+        if ((_skill.IsAttack && attachedEvent is CharacterDamagedVisualEvent) || (_skill.IsHeal && attachedEvent is CharacterHealedVE)
+            /** || (_skill.IsAddsEffect && attachedEvent ) **/
+            )
+        {
+            _attachedEvents.Add(attachedEvent);
+            return true;
+        }
+        return false;
+
+    }
+
+
 }
