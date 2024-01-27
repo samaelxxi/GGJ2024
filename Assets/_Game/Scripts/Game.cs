@@ -24,18 +24,22 @@ public class Game : Singleton<Game>
         _combat.Init(_combatDatas[_currentCombatIndex]);
         _uiView.Init(_combat);
     }
+
+    public void StartCombat()
+    {
+        _combat.StartCombat();
+    }
     void Start()
     {
         
         // _combat.Events.OnCharacterGetsTurn += MakeNextTurn;  // for auto combat or smth
         // _combat.Events.OnCombatEnd += OnCombatEnd;
-        _combat.StartCombat();
     }
 
-    void Update()
-    {
+    // void Update()
+    // {
         
-    }
+    // }
 
 
     int _madeTurns = 0;

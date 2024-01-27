@@ -41,19 +41,16 @@ public class UIView : MonoBehaviour
         _selectedSkillBtn = newSkillBtn;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     public void Init(Combat combat)
     {
         _combat = combat;
-        // Create characters
+        _state = State.DisplayAction;
+    }
+
+    public void StartDisplaingCombat()
+    {
         CreateCharacters();
         SubscribeToEvents();
-        _state = State.DisplayAction;
     }
 
     void CreateCharacters()
