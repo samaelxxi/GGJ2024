@@ -27,7 +27,7 @@ public class CharacterUsesSkillVE : VisualEvent
     {
         
         DramatickLightOn();
-        _user.DisplayeSkill(_skill);
+        _user.DisplayeSkill(_skill, _targets);
         yield return new WaitForSeconds(0.3f);
         foreach(var attachedEvent in _attachedEvents)
         {

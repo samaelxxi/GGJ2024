@@ -1,0 +1,712 @@
+fileFormatVersion: 2
+guid: 40a8a0d25c90751458682c6c5d165c70
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tank_recolor_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 416
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8923e788a258bce48b574d46805d4e29
+      internalID: -641083998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_1
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 416
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0739461cf9cd0f040a086140fd418f3c
+      internalID: -318254280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_2
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 416
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce3d1d51aa6ee0e4096198dc59613671
+      internalID: 1510466275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_3
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 416
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60783afed7946024ba6050f28b75b07f
+      internalID: 1181744692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_4
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 416
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d77405e174a61c43b6ec941b9b96a2e
+      internalID: -1731437194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_5
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 416
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d73828ee98003841a187b329a4ef046
+      internalID: -1864815001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 312
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f749ba14b12b1dd4f9656e51f417424f
+      internalID: -517310300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_7
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 312
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3be0ec6dd15ccf1418f33a4f1df5c589
+      internalID: 2129346038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_8
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 312
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a98c67cd3694af34da792beb3aa91a37
+      internalID: -1485302221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_9
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 312
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c081f8fef51789498a05da75bd5959e
+      internalID: -1357547331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_10
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 312
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3282be8862af0bb459720ebd3d6413e5
+      internalID: 1425248075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_11
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 312
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b872661058e561440ab7f181f9ddcf61
+      internalID: 1364859173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_12
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 312
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a02af128f780434dbb38a46846b8178
+      internalID: 683408876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 208
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9c7d5e31bac2684996c3153beafaa16
+      internalID: -1948187242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_14
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 208
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93854eb0f219d0242921138b7527aa91
+      internalID: -138987705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_15
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 208
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0acbe0c8008426e4297be2789343eb7a
+      internalID: 242355123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 104
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 428a1f14609b63345800491c2dd6c2d8
+      internalID: -472034767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_17
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 104
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0efe17ede471372458a7c54119aacac4
+      internalID: -1188208730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_18
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 104
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a405523f16283fa4a8444f23836fcf1c
+      internalID: -1431619247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_19
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 104
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc689d7d71e893c4f9a4fcd0de73d04d
+      internalID: -1391867306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_20
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 104
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 411b6d4f78b36944b9f6ae7d7ebbe820
+      internalID: 438862699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26ded14114ebfc844a8ff5ca74b93074
+      internalID: 1406860120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_22
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 0
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f670caf152b370c4e8585103cf13d2e5
+      internalID: -692402116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_23
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 0
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bfbe2139a8c3b645b9d739c0734b146
+      internalID: -1845527434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_24
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 0
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7f32af2020e57a4da5dc7d3ea1439a4
+      internalID: -735622935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tank_recolor_25
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 0
+        width: 129
+        height: 104
+      alignment: 9
+      pivot: {x: 0.22, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82b66a82a6a47ef4f9f90d8ff3eede10
+      internalID: -1613468770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      tank_recolor_0: -641083998
+      tank_recolor_1: -318254280
+      tank_recolor_10: 1425248075
+      tank_recolor_11: 1364859173
+      tank_recolor_12: 683408876
+      tank_recolor_13: -1948187242
+      tank_recolor_14: -138987705
+      tank_recolor_15: 242355123
+      tank_recolor_16: -472034767
+      tank_recolor_17: -1188208730
+      tank_recolor_18: -1431619247
+      tank_recolor_19: -1391867306
+      tank_recolor_2: 1510466275
+      tank_recolor_20: 438862699
+      tank_recolor_21: 1406860120
+      tank_recolor_22: -692402116
+      tank_recolor_23: -1845527434
+      tank_recolor_24: -735622935
+      tank_recolor_25: -1613468770
+      tank_recolor_3: 1181744692
+      tank_recolor_4: -1731437194
+      tank_recolor_5: -1864815001
+      tank_recolor_6: -517310300
+      tank_recolor_7: 2129346038
+      tank_recolor_8: -1485302221
+      tank_recolor_9: -1357547331
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

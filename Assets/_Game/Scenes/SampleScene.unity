@@ -257,8 +257,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.01880002, y: 0.141, z: 0}
-    m_Extent: {x: 0.9871, y: 0.8514, z: 0}
+    m_Center: {x: -0.018299997, y: 0.14180002, z: 0}
+    m_Extent: {x: 0.9874, y: 0.8514, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -467,9 +467,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.11515152
     y: 0
-    width: 1
+    width: 0.76929295
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -693,12 +693,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -908509355, guid: 7c59d23578d1a9042943dc0a7e009de8, type: 3}
+  m_Sprite: {fileID: 609569586, guid: 7c59d23578d1a9042943dc0a7e009de8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.54, y: 0.75}
+  m_Size: {x: 0.67, y: 0.88}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

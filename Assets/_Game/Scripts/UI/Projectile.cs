@@ -19,6 +19,9 @@ public class Projectile : MonoBehaviour
         Vector3 direction = _target - transform.position;
         direction.Normalize();
         transform.Translate(direction * Speed * Time.deltaTime);
-        
+        if (Vector3.Distance(transform.position, _target) < 0.1f)
+        {
+            Destroy(gameObject);
+        }
     }
 }
