@@ -36,10 +36,10 @@ public class SkillBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
 
-    public void Init(Skill skill, Sprite backgroundSprite)
+    public void Init(Skill skill, Sprite backgroundSprite, string skillDisplayName)
     {
         Skill = skill;
-        SkillName.text = Skill.name;
+        SkillName.text = skillDisplayName;
         Background.sprite = backgroundSprite;
 
     }

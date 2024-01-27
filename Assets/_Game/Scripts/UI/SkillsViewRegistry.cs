@@ -7,6 +7,7 @@ using UnityEngine;
 [Serializable]
 public class SkillViewData
 {
+    public string DisplaySkillName;
     public Sprite CardSprite;
     public GameObject TargetEffect;
 
