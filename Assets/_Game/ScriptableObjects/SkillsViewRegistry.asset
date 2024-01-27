@@ -24,7 +24,7 @@ MonoBehaviour:
   - Key: {fileID: 11400000, guid: 1aa0d4e946888f4489400acb1a98a19a, type: 2}
     Value:
       CardSprite: {fileID: 1045417957, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
-      TargetEffect: {fileID: 8945030523439300752, guid: 079a8c0581b14df4d8f3aadd4c3613c3, type: 3}
+      TargetEffect: {fileID: 2727105468563520087, guid: 7f9ea332d1449214a9f48fe1681b1e65, type: 3}
   - Key: {fileID: 11400000, guid: b065f2e4301650744be9b3e9f98d522c, type: 2}
     Value:
       CardSprite: {fileID: -2061496393, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
