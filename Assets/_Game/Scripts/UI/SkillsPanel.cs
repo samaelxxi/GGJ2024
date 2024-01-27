@@ -12,7 +12,7 @@ public class SkillsPanel : MonoBehaviour
         foreach(Skill skill in skills)
         {
             SkillBtn newBtn = Instantiate(SkillBtnPrefab, transform);
-            newBtn.Init(skill, SkillSpritesRegistry.Get(skill).CardSprite);
+            newBtn.Init(skill, SkillSpritesRegistry.Get(skill).CardSprite, SkillSpritesRegistry.Get(skill).DisplaySkillName);
         }
     }
 
