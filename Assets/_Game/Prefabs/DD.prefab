@@ -10,7 +10,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 94300783615745632, guid: bd77c6ba4a9ed574dacc6794da3e6d33, type: 3}
       propertyPath: m_Name
-      value: CharacterView
+      value: DD
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145792876004533597, guid: bd77c6ba4a9ed574dacc6794da3e6d33, type: 3}
+      propertyPath: m_Size.x
+      value: 0.59104335
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145792876004533597, guid: bd77c6ba4a9ed574dacc6794da3e6d33, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8552437
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145792876004533597, guid: bd77c6ba4a9ed574dacc6794da3e6d33, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.1264295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145792876004533597, guid: bd77c6ba4a9ed574dacc6794da3e6d33, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.32038426
       objectReference: {fileID: 0}
     - target: {fileID: 8410370333747314549, guid: bd77c6ba4a9ed574dacc6794da3e6d33, type: 3}
       propertyPath: m_LocalPosition.x

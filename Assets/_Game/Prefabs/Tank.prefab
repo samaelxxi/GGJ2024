@@ -100,6 +100,22 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: e00777e9958e17649a2ce645ebd7341e, type: 2}
+    - target: {fileID: 7995511479943891662, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
+      propertyPath: m_Size.x
+      value: 0.6789738
+      objectReference: {fileID: 0}
+    - target: {fileID: 7995511479943891662, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8968453
+      objectReference: {fileID: 0}
+    - target: {fileID: 7995511479943891662, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.009450853
+      objectReference: {fileID: 0}
+    - target: {fileID: 7995511479943891662, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.4191734
+      objectReference: {fileID: 0}
     - target: {fileID: 8548001455548444215, guid: 6e5fb26027f50f44a8b95d6afcdbc06c, type: 3}
       propertyPath: m_FlipX
       value: 0

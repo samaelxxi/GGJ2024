@@ -13,6 +13,7 @@ public class CharacterView : MonoBehaviour
     [SerializeField] Projectile ProjectilePrefab;
 
     [SerializeField] SelectionMarker selectionMarker;
+    [SerializeField] GameObject ShieldEffect;
 
     [SerializeField] AudioClip DeathSound;
 
@@ -20,19 +21,18 @@ public class CharacterView : MonoBehaviour
 
     Animator _animator;
 
-    [HideInInspector] 
+    [HideInInspector]
     public bool InActiveAnimation = false;
 
     bool _isHighlighted = false;
     bool _isSelected = false;
-    public bool IsSelected 
+    public bool IsSelected
     {
         get => _isSelected;
-        set  
+        set
         {
             _isSelected = value;
-            selectionMarker.SetVisible(value);
-            selectionMarker.SetType( value ? SelectionMarker.Type.Selection : Character.Team == 0 ? SelectionMarker.Type.Ally : SelectionMarker.Type.Enemy);
+            SetMarkerState(value, value ? SelectionMarker.Type.Selection : Character.Team == 0 ? SelectionMarker.Type.Ally : SelectionMarker.Type.Enemy);
         }
     }
     // Start is called before the first frame update
@@ -43,17 +43,16 @@ public class CharacterView : MonoBehaviour
     void Start()
     {
         _animator = GetComponent<Animator>();
-        selectionMarker.SetType(Character.Team == 0 ? SelectionMarker.Type.Ally : SelectionMarker.Type.Enemy);
-        selectionMarker.SetVisible(false);
+        SetMarkerState(false, Character.Team == 0 ? SelectionMarker.Type.Ally : SelectionMarker.Type.Enemy);
         UpdateStatus();
+        SetShieldEffectVisible(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Character.IsDead) return;
-        selectionMarker.SetVisible(_isHighlighted || IsSelected);
-        if(IsSelected && !_isHighlighted)  selectionMarker.SetType(SelectionMarker.Type.Selection);
+        SetMarkerState(_isHighlighted || IsSelected, _isHighlighted ? Character.Team == 0 ? SelectionMarker.Type.Ally : SelectionMarker.Type.Enemy : SelectionMarker.Type.Selection);
         _isHighlighted = false;
     }
 
@@ -61,14 +60,14 @@ public class CharacterView : MonoBehaviour
     public void Init(Character character, UICharacterCard card)
     {
         Character = character;
-        if(Character.Team != 0) _body.localScale = new Vector3(-1, 1, 1);
+        if (Character.Team != 0) _body.localScale = new Vector3(-1, 1, 1);
         _uiCharCard = card;
     }
 
     public void Highlight()
     {
         _isHighlighted = true;
-        selectionMarker.SetType(Character.Team == 0 ? SelectionMarker.Type.Ally : SelectionMarker.Type.Enemy);
+        SetMarkerState(true, Character.Team == 0 ? SelectionMarker.Type.Ally : SelectionMarker.Type.Enemy);
     }
 
     Action _animationEventCallback;
@@ -101,6 +100,20 @@ public class CharacterView : MonoBehaviour
         selectionMarker.SetVisible(false);
         _animator.SetTrigger("Die");
         InActiveAnimation = true;
+    }
+
+    void SetMarkerState(bool isVisible, SelectionMarker.Type type)
+    {
+        selectionMarker.SetType(type);
+        _uiCharCard.SetType(type);
+        selectionMarker.SetVisible(isVisible);
+        _uiCharCard.SetSelected(isVisible);
+    }
+
+    public void SetShieldEffectVisible(bool isVisible)
+    {
+        ShieldEffect.SetActive(isVisible);
+        _uiCharCard.SetShieldEffectVisible(isVisible);
     }
 
     public void InvokeAnimCallback() => _animationEventCallback?.Invoke();
