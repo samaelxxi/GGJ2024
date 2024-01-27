@@ -13,16 +13,14 @@ public class King : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
     }
-    void Start()
+
+    public void SpawnKing()
     {
-        // _animator = GetComponent<Animator>();
-        // Game.Instance.Events.OnCharacterDamaged += (_, _) => 
-        // {
-        //     _animator.SetTrigger("Lol");
-        // };
+        _animator.SetTrigger("CombatStart");
     }
 
-    public void Lol(float delay = 0){
+    public void Lol(float delay = 0)
+    {
         StartCoroutine(ActualLol(delay));
     }
 
