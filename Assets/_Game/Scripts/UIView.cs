@@ -64,7 +64,7 @@ public class UIView : MonoBehaviour
         {
             CharacterView newCharacterView = Instantiate(CharactersRegistry.Get(character._data).prefab, PlayerTeamSlots[i]).GetComponent<CharacterView>();
             UICharacterCard card = UiManager.CreateCard(character);
-            
+
             newCharacterView.Init(character, card);
             PlayerCharactersViews.Add(newCharacterView);
             i++;
@@ -74,7 +74,7 @@ public class UIView : MonoBehaviour
         {
             CharacterView newCharacterView = Instantiate(CharactersRegistry.Get(character._data).prefab, NPCTeamSlots[i]).GetComponent<CharacterView>();
             UICharacterCard card = UiManager.CreateCard(character);
-            newCharacterView.Init(character,card);
+            newCharacterView.Init(character, card);
             NPCCharactersViews.Add(newCharacterView);
             i++;
         }
@@ -83,25 +83,30 @@ public class UIView : MonoBehaviour
     {
         _visualEvents = new Queue<VisualEvent>();
         Game.Instance.Events.OnCharacterGetsTurn += (Character c) => AddVisualEvent(new CharacterGetsTurnVE(c));
-         
+
         Game.Instance.Events.OnCharacterDamaged += (Character c, int damage) => AddVisualEvent(new CharacterDamagedVisualEvent(c, damage));
-            
+
         Game.Instance.Events.OnCharacterHealed += (Character c, int heal) => AddVisualEvent(new CharacterHealedVE(c, heal));
-            
+
         Game.Instance.Events.OnCharacterDied += (Character c) => AddVisualEvent(new CharacterDeathVE(c));
-    
+
         Game.Instance.Events.OnSkillUsed += (Character user, Skill skill, List<Character> targets) => AddVisualEvent(new CharacterUsesSkillVE(user, skill, targets));
 
         Game.Instance.Events.OnCombatEnd += (int teamId) => AddVisualEvent(new CombatEndVE(teamId));
+
+        Game.Instance.Events.OnCharactersGetsEffect += (Character c, Effect e) => AddVisualEvent(new CharactersGetsEffectVE(c, e));
+
+        Game.Instance.Events.OnCharacterEffectEnd += (Character c, Effect e) => AddVisualEvent(new CharacterEffectEndVE(c, e));
+
     }
 
     void AddVisualEvent(VisualEvent newVisualEvent)
     {
-        if(newVisualEvent is CharacterUsesSkillVE skillEvent)
+        if (newVisualEvent is CharacterUsesSkillVE skillEvent)
         {
             skillEvent.CourutineOvner = this;
         }
-        if(_lastInQueue != null && _lastInQueue is CharacterUsesSkillVE parentSkillEvent && parentSkillEvent.AttachVisualEvent(newVisualEvent))
+        if (_lastInQueue != null && _lastInQueue is CharacterUsesSkillVE parentSkillEvent && parentSkillEvent.AttachVisualEvent(newVisualEvent))
         {
             // event is attached to the last in queue
             return;
@@ -149,7 +154,7 @@ public class UIView : MonoBehaviour
 
             if (visualEvent is CharacterGetsTurnVE charTurnVE)
             {
-                if(_activeCharacterView) _activeCharacterView.IsSelected = false;
+                if (_activeCharacterView) _activeCharacterView.IsSelected = false;
                 _activeCharacterView = charTurnVE.CharacterView;
                 _activeCharacterView.IsSelected = true;
                 if (charTurnVE.CharacterView.Character.Team == 0)

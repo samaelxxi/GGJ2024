@@ -20,6 +20,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.067
       objectReference: {fileID: 0}
+    - target: {fileID: 5145792876004533597, guid: bd77c6ba4a9ed574dacc6794da3e6d33, type: 3}
+      propertyPath: m_Size.y
+      value: 0.88327247
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145792876004533597, guid: bd77c6ba4a9ed574dacc6794da3e6d33, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.036506712
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145792876004533597, guid: bd77c6ba4a9ed574dacc6794da3e6d33, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.33439866
+      objectReference: {fileID: 0}
     - target: {fileID: 5399327828046850682, guid: bd77c6ba4a9ed574dacc6794da3e6d33, type: 3}
       propertyPath: m_Controller
       value: 
