@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class UIView : MonoBehaviour
 {
-    [SerializeField] CharactersRegistry CharactersRegistry;
+    public CharactersRegistry CharactersRegistry;
+    public SkillsViewRegistry SkillsViewRegistry;
+
     [SerializeField] List<Transform> PlayerTeamSlots;
     [SerializeField] List<Transform> NPCTeamSlots;
 
@@ -51,6 +53,8 @@ public class UIView : MonoBehaviour
     {
         CreateCharacters();
         SubscribeToEvents();
+        Game.Instance.StartCombat();
+        UiManager.HideStartMenu();
     }
 
     void CreateCharacters()

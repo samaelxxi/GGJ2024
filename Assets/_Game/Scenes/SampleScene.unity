@@ -1090,6 +1090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharactersRegistry: {fileID: 11400000, guid: a1877ff7be902a44ea3167416b9eef1f, type: 2}
+  SkillsViewRegistry: {fileID: 11400000, guid: bfd1d8dec636cfc418ae207439b7a0ea, type: 2}
   PlayerTeamSlots:
   - {fileID: 810345841}
   - {fileID: 1494079306}
@@ -1389,30 +1390,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UIView, Assembly-CSharp
         m_MethodName: StartDisplaingCombat
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1911345250}
-        m_TargetAssemblyTypeName: Game, Assembly-CSharp
-        m_MethodName: StartCombat
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 195497161}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1916,6 +1893,7 @@ MonoBehaviour:
   uiCharacterCardPrefab: {fileID: 8145120503281527468, guid: b03e0ef873a31724191c1949ccefb02a, type: 3}
   PlayerTeamContainer: {fileID: 2109368667}
   NPCTeamContainer: {fileID: 775208707}
+  StartMenu: {fileID: 195497161}
   WinScreenPrefab: {fileID: 1857833961881117998, guid: fa958aa6ee667904693f0b5e9d56f082, type: 3}
   DefeatScreenPrefab: {fileID: 2114589669559620403, guid: 3013501da59bc3d4d821044fdc08709e, type: 3}
 --- !u!1 &1911345249

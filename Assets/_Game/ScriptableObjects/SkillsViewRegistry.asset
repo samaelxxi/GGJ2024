@@ -13,19 +13,38 @@ MonoBehaviour:
   m_Name: SkillsViewRegistry
   m_EditorClassIdentifier: 
   RegistryList:
-  - Skill: {fileID: 11400000, guid: 3cfccefb9c713ab46873e9c3b77f3ffa, type: 2}
-    Sprite: {fileID: 1045417957, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
-  - Skill: {fileID: 11400000, guid: 2e6395a3b4b10f742a08bb58abe0eb18, type: 2}
-    Sprite: {fileID: 1555386103, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
-  - Skill: {fileID: 11400000, guid: 1aa0d4e946888f4489400acb1a98a19a, type: 2}
-    Sprite: {fileID: 1045417957, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
-  - Skill: {fileID: 11400000, guid: b065f2e4301650744be9b3e9f98d522c, type: 2}
-    Sprite: {fileID: -2061496393, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
-  - Skill: {fileID: 11400000, guid: 5b006baabb98fa24995a99049a89bb38, type: 2}
-    Sprite: {fileID: 662578147, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
-  - Skill: {fileID: 11400000, guid: f595f203b6c142041a0ca40b9fff71b2, type: 2}
-    Sprite: {fileID: 1504088973, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
-  - Skill: {fileID: 11400000, guid: 84deb9fed1c9244409f72a16ed8033a9, type: 2}
-    Sprite: {fileID: 1547054734, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
-  - Skill: {fileID: 11400000, guid: c4faaff15ffbfab4fb2aaf37343b9724, type: 2}
-    Sprite: {fileID: 1045417957, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
+  - Key: {fileID: 11400000, guid: 3cfccefb9c713ab46873e9c3b77f3ffa, type: 2}
+    Value:
+      CardSprite: {fileID: 1045417957, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
+      TargetEffect: {fileID: 8945030523439300752, guid: 079a8c0581b14df4d8f3aadd4c3613c3, type: 3}
+  - Key: {fileID: 11400000, guid: 2e6395a3b4b10f742a08bb58abe0eb18, type: 2}
+    Value:
+      CardSprite: {fileID: 1555386103, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
+      TargetEffect: {fileID: 8945030523439300752, guid: 079a8c0581b14df4d8f3aadd4c3613c3, type: 3}
+  - Key: {fileID: 11400000, guid: 1aa0d4e946888f4489400acb1a98a19a, type: 2}
+    Value:
+      CardSprite: {fileID: 1045417957, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
+      TargetEffect: {fileID: 8945030523439300752, guid: 079a8c0581b14df4d8f3aadd4c3613c3, type: 3}
+  - Key: {fileID: 11400000, guid: b065f2e4301650744be9b3e9f98d522c, type: 2}
+    Value:
+      CardSprite: {fileID: -2061496393, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
+      TargetEffect: {fileID: 0}
+  - Key: {fileID: 11400000, guid: 5b006baabb98fa24995a99049a89bb38, type: 2}
+    Value:
+      CardSprite: {fileID: 662578147, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
+      TargetEffect: {fileID: 0}
+  - Key: {fileID: 11400000, guid: c4faaff15ffbfab4fb2aaf37343b9724, type: 2}
+    Value:
+      CardSprite: {fileID: 1045417957, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
+      TargetEffect: {fileID: 2727105468563520087, guid: b88f7e34964fa5f418df7ac9a49f946b, type: 3}
+  - Key: {fileID: 11400000, guid: f595f203b6c142041a0ca40b9fff71b2, type: 2}
+    Value:
+      CardSprite: {fileID: 1504088973, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
+      TargetEffect: {fileID: 2727105468563520087, guid: f7eaf99707319df43b91de3654cb17de, type: 3}
+  - Key: {fileID: 11400000, guid: 84deb9fed1c9244409f72a16ed8033a9, type: 2}
+    Value:
+      CardSprite: {fileID: 1547054734, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
+      TargetEffect: {fileID: 2727105468563520087, guid: f7eaf99707319df43b91de3654cb17de, type: 3}
+  Default:
+    CardSprite: {fileID: 1045417957, guid: 270aad3f46a1d4e4ab3d94142c3b86dd, type: 3}
+    TargetEffect: {fileID: 8945030523439300752, guid: 079a8c0581b14df4d8f3aadd4c3613c3, type: 3}

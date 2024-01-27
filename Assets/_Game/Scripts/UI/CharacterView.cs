@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -70,10 +71,10 @@ public class CharacterView : MonoBehaviour
         selectionMarker.SetType(Character.Team == 0 ? SelectionMarker.Type.Ally : SelectionMarker.Type.Enemy);
     }
 
-    List<CharacterView> _targetsForDisplaingSkill;
-    public virtual void DisplayeSkill(Skill skill, List<CharacterView> _targets)
+    Action _animationEventCallback;
+    public virtual void DisplayeSkill(Skill skill, Action animationEventCallback)
     {
-        _targetsForDisplaingSkill = _targets;
+        _animationEventCallback = animationEventCallback;
         if (skill.IsAddsEffect)
         {
             _animator.SetTrigger("SpecialAction1");
@@ -102,13 +103,15 @@ public class CharacterView : MonoBehaviour
         InActiveAnimation = true;
     }
 
-    public void Shoot()
-    {
-        foreach (CharacterView target in _targetsForDisplaingSkill)
-        {
-            Projectile projectile = Instantiate(ProjectilePrefab, _projectileSpawnPos.position, Quaternion.identity);
-            projectile.Init(target.ProjectileHit.position);
-        }
-    }
+    public void InvokeAnimCallback() => _animationEventCallback?.Invoke();
+
+    // public void Shoot()
+    // {
+    //     foreach (CharacterView target in _targetsForDisplaingSkill)
+    //     {
+    //         Projectile projectile = Instantiate(ProjectilePrefab, _projectileSpawnPos.position, Quaternion.identity);
+    //         projectile.Init(target.ProjectileHit.position);
+    //     }
+    // }
 
 }
