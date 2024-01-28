@@ -30,18 +30,21 @@ public class Registry<Key, Value> : ScriptableObject
         return RegistryDictionary[key];
     }
 
-
+    public void Preload()
+    {
+        _registry = new Dictionary<Key, Value>();
+                foreach (var entry in RegistryList)
+                {
+                    _registry.Add(entry.Key, entry.Value);
+                }
+    }
     public Dictionary<Key, Value> RegistryDictionary
     {
         get
         {
             if (_registry == null)
             {
-                _registry = new Dictionary<Key, Value>();
-                foreach (var entry in RegistryList)
-                {
-                    _registry.Add(entry.Key, entry.Value);
-                }
+                Preload();
             }
             return _registry;
         }

@@ -37,7 +37,7 @@ public class CharacterUsesSkillVE : VisualEvent
             {
                 foreach (CharacterView target in _targets)
                 {
-                    if (target.Character.DoesHaveEffect(EffectType.AllyDefense))
+                    if (_skill.IsAttack && target.Character.DoesHaveEffect(EffectType.AllyDefense))
                     {
                         UnityEngine.Object.Instantiate(effect, Game.Instance.UIView.GetViewByCharacter(target.Character.GetEffectOwner(EffectType.AllyDefense)).ProjectileHit);
                     }
@@ -45,7 +45,7 @@ public class CharacterUsesSkillVE : VisualEvent
                 };
             };
         }
-
+        AudioSource.PlayClipAtPoint(Game.Instance.UIView.SkillsViewRegistry.Get(_skill).SFX, Vector3.zero);
         _user.DisplayeSkill(_skill, animCallback);
         yield return new WaitForSeconds(0.3f);
         foreach (var attachedEvent in _attachedEvents)

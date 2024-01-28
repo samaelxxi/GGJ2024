@@ -11,6 +11,8 @@ public class SkillViewData
     public Sprite CardSprite;
     public GameObject TargetEffect;
 
+    public AudioClip SFX;
+
 }
 
 public class SkillsViewRegistry : Registry<Skill, SkillViewData> { }
