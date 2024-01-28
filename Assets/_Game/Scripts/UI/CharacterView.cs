@@ -97,7 +97,7 @@ public class CharacterView : MonoBehaviour
     public void DisplayDeath()
     {
         Destroy(_uiCharCard.gameObject);
-        AudioSource.PlayClipAtPoint(DeathSound, Vector3.zero);
+        AudioSource.PlayClipAtPoint(DeathSound, new Vector3(0, 0, -10));
         GetComponent<Collider2D>().enabled = false;
         selectionMarker.SetVisible(false);
         _animator.SetTrigger("Die");

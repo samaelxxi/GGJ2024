@@ -26,12 +26,12 @@ public class SkillBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             if(_isSelected)
             {
                 transform.localScale = new Vector3(1.2f, 1.2f, 1);
-                AudioSource.PlayClipAtPoint(Selected, Vector3.zero);
+                AudioSource.PlayClipAtPoint(Selected, new Vector3(0, 0, -10));
 
             } else 
             {
                 transform.localScale =  Vector3.one;
-                AudioSource.PlayClipAtPoint(Deselected, Vector3.zero);
+                AudioSource.PlayClipAtPoint(Deselected, new Vector3(0, 0, -10));
             }
         }
     }
@@ -54,7 +54,7 @@ public class SkillBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (!IsSelected)
         {
             transform.localScale = new Vector3(1.1f, 1.1f, 1);
-            AudioSource.PlayClipAtPoint(PointerOn, Vector3.zero);
+            AudioSource.PlayClipAtPoint(PointerOn, new Vector3(0, 0, -10));
         }
     }
 

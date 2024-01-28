@@ -45,7 +45,7 @@ public class CharacterUsesSkillVE : VisualEvent
                 };
             };
         }
-        AudioSource.PlayClipAtPoint(Game.Instance.UIView.SkillsViewRegistry.Get(_skill).SFX, Vector3.zero);
+        AudioSource.PlayClipAtPoint(Game.Instance.UIView.SkillsViewRegistry.Get(_skill).SFX, new Vector3(0, 0, -10));
         _user.DisplayeSkill(_skill, animCallback);
         yield return new WaitForSeconds(0.3f);
         foreach (var attachedEvent in _attachedEvents)
