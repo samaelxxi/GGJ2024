@@ -47,6 +47,8 @@ public class UIView : MonoBehaviour
     {
         _combat = combat;
         _state = State.DisplayAction;
+        SkillsViewRegistry.Preload();
+        CharactersRegistry.Preload();
     }
 
     public void StartDisplaingCombat()
@@ -150,6 +152,7 @@ public class UIView : MonoBehaviour
                 _king.Lol(.5f);
             }
 
+            if(visualEvent is CombatEndVE) GetComponent<AudioSource>().Stop();
             yield return StartCoroutine(visualEvent.Display());
 
             if (visualEvent is CharacterGetsTurnVE charTurnVE)

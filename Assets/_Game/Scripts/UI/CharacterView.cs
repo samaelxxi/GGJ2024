@@ -16,6 +16,8 @@ public class CharacterView : MonoBehaviour
     [SerializeField] GameObject ShieldEffect;
 
     [SerializeField] AudioClip DeathSound;
+    [SerializeField] AudioClip TakeDamage;
+
 
     public Character Character { get; set; }
 

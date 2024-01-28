@@ -17,6 +17,10 @@ public class King : MonoBehaviour
     public void SpawnKing()
     {
         _animator.SetTrigger("CombatStart");
+        foreach( AudioSource source in GetComponents<AudioSource>())
+        {
+            source.Play();
+        }
     }
 
     public void Lol(float delay = 0)
