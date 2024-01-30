@@ -152,7 +152,7 @@ public class UIView : MonoBehaviour
                 _king.Lol(.5f);
             }
 
-            if(visualEvent is CombatEndVE) GetComponent<AudioSource>().Stop();
+            if(visualEvent is CombatEndVE) _king.StopMusic();
             yield return StartCoroutine(visualEvent.Display());
 
             if (visualEvent is CharacterGetsTurnVE charTurnVE)
