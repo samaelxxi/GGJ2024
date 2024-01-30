@@ -68,6 +68,7 @@ public class CharacterView : MonoBehaviour
 
     public void Highlight()
     {
+        if (Character.IsDead) return;
         _isHighlighted = true;
         SetMarkerState(true, Character.Team == 0 ? SelectionMarker.Type.Ally : SelectionMarker.Type.Enemy);
     }
